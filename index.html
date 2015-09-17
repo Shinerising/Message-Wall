@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Message Wall</title>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style>
+        @font-face {
+            font-family: 'FontAwesome';
+            src: url('../fonts/fontawesome-webfont.eot?v=4.4.0');
+            src: url('../fonts/fontawesome-webfont.eot?#iefix&v=4.4.0') format('embedded-opentype'), url('../fonts/fontawesome-webfont.woff2?v=4.4.0') format('woff2'), url('../fonts/fontawesome-webfont.woff?v=4.4.0') format('woff'), url('../fonts/fontawesome-webfont.ttf?v=4.4.0') format('truetype'), url('../fonts/fontawesome-webfont.svg?v=4.4.0#fontawesomeregular') format('svg');
+            font-weight: normal;
+            font-style: normal;
+        }
+        
+        body {
+            margin: 0;
+            border: none;
+            background: rgba(240, 240, 240, 1);
+        }
+        
+        #area {
+            width: 800px;
+            margin: 0 auto;
+        }
+        
+        #main {
+            position:relative;
+        }
+        
+        #tree {
+            width: 800px;
+            margin: 0 auto;
+        }
+        
+        #tree_body {
+            width: 100%;
+            z-index:9;
+            position:relative;
+        }
+        
+        .tree_part{ 
+	width: 0;
+	height:0;
+            margin-bottom:-180px;
+	border-left: 400px solid transparent;
+	border-right: 400px solid transparent;
+	border-bottom: 300px solid rgba(100,200,100,1);
+        }
+        
+        #tree_head{
+            position:relative;
+            width:160px;
+            height:160px;
+            margin:0 auto;
+            margin-bottom:-100px;
+            z-index:10;
+        }
+        
+        #tree_head:after{
+            content: "\f005";
+            font: normal normal normal 160px/1 FontAwesome;
+            color: gold;
+        }
+        
+        #tree_foot  {
+            position:relative;
+            width:100px;
+            height:0px;
+            margin:0 auto;
+	border-left: 200px solid transparent;
+	border-right: 200px solid transparent;
+	border-bottom: 400px solid rgba(200,140,100,1);
+            z-index:3;
+        }
+        
+        #leaves{
+            position:absolute;
+            z-index:12;
+            left: 0px;
+            top: 0px;
+        }
+        
+        .leaf {
+            width: 320px;
+            height: 320px;
+            position:absolute;
+            margin:0 auto;
+            cursor: pointer;
+        }
+        
+        #le_01{
+            left:100px;
+            top:150px;
+            transform:scale(0.4) rotate(10deg);
+        }
+        
+        #le_02{
+            left:400px;
+            top:300px;
+            transform:scale(0.4) rotate(-10deg);
+        }
+        
+        #le_03{
+            left:200px;
+            top:450px;
+            transform:scale(0.4) rotate(5deg);
+        }
+        
+        #le_04{
+            left:300px;
+            top:600px;
+            transform:scale(0.4) rotate(-5deg);
+        }
+        
+        
+        
+        #le_01 .shape_heart:before{
+            color:lightyellow;
+        }
+        #le_02 .shape_heart:before{
+            color:lightcoral;
+        }
+        #le_03 .shape_heart:before{
+            color:deeppink;
+        }
+        #le_04 .shape_heart:before{
+            color:cyan;
+        }
+        
+        
+        
+        .leaf_main:hover {
+            width: 100%;
+            height: 100%;
+            animation: leaf_quiver 0.3s;
+        }
+        
+        .leaf_back {
+            width: 100%;
+            height: 0px;
+        }
+        
+        .shape_back:before {
+            width: 100%;
+            height: 100%;
+            content: "\f004";
+            font: normal normal normal 320px/1 FontAwesome;
+            color: white;
+        }
+        
+        .shape_heart {
+            width: 100%;
+            height: 100%;
+            margin-top: -100%;
+        }
+        
+        .shape_heart:before {
+            width: 100%;
+            height: 100%;
+            content: "\f004";
+            font: normal normal normal 320px/1 FontAwesome;
+            color: deeppink;
+            -webkit-mask: -webkit-linear-gradient(top, rgba(1, 1, 1, .5), rgba(1, 1, 1, 1));
+            text-shadow: 0px 10px 5px rgba(100, 100, 100, .3);
+        }
+        
+        .leaf_info {
+            margin: 25% auto;
+            width: 90%;
+            -webkit-mask: #000;
+        }
+        
+        .leaf_text {
+            text-align: center;
+            font: normal normal normal 40px/1.5 Cursive;
+            color: #000;
+        }
+        
+        .leaf_name {
+            margin: 10% auto;
+            width: 100%;
+            text-align: center;
+            font: normal normal normal 24px/1 Cursive;
+            color: #000;
+        }
+        
+        @keyframes leaf_quiver {
+            0% {
+                transform: rotate(0deg);
+            }
+            25% {
+                transform: rotate(-10deg);
+            }
+            50% {
+                transform: rotate(10deg);
+            }
+            75% {
+                transform: rotate(-10deg);
+            }
+            100% {
+                transform: rotate(0deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="area">
+        <div id="main">
+            <div id="tree">
+                <div id="tree_head"></div>
+                <div id="tree_body">
+                    <div class="tree_part"></div>
+                    <div class="tree_part"></div>
+                    <div class="tree_part"></div>
+                    <div class="tree_part"></div>
+                    <div class="tree_part"></div>
+                </div>
+                <div id="tree_foot"></div>
+            </div>
+            <div id="leaves">
+            <div class="leaf" id="le_01">
+                <div class="leaf_main">
+                <div class="leaf_back">
+                    <div class="shape_back shape_text"></div>
+                    <div class="shape_heart shape_text"></div>
+                </div>
+                <div class="leaf_info">
+                    <div class="leaf_text">Bullshit!</div>
+                    <div class="leaf_name">Apollo Wayne</div>
+                </div></div>
+            </div>
+                
+            <div class="leaf" id="le_02">
+                <div class="leaf_main">
+                <div class="leaf_back">
+                    <div class="shape_back shape_text"></div>
+                    <div class="shape_heart shape_text"></div>
+                </div>
+                <div class="leaf_info">
+                    <div class="leaf_text">Yes we can!</div>
+                    <div class="leaf_name">Barack Obama</div>
+                </div></div>
+            </div>
+                
+            <div class="leaf" id="le_03">
+                <div class="leaf_main">
+                <div class="leaf_back">
+                    <div class="shape_back shape_text"></div>
+                    <div class="shape_heart shape_text"></div>
+                </div>
+                <div class="leaf_info">
+                    <div class="leaf_text">Too young!</div>
+                    <div class="leaf_name">Chairman Jiang</div>
+                </div></div>
+            </div>
+                
+            <div class="leaf" id="le_04">
+                <div class="leaf_main">
+                <div class="leaf_back">
+                    <div class="shape_back shape_text"></div>
+                    <div class="shape_heart shape_text"></div>
+                </div>
+                <div class="leaf_info">
+                    <div class="leaf_text">Hello World!</div>
+                    <div class="leaf_name">NULL</div>
+                </div></div>
+            </div>
+                
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
