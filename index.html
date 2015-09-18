@@ -41,6 +41,7 @@
             background: rgba(100, 100, 250, 1);
             background: -webkit-linear-gradient(top, rgba(100, 100, 250, 1), rgba(80, 80, 160, 1));
         }
+        
         #back {
             position: absolute;
             width: 100%;
@@ -58,6 +59,9 @@
         
         #main {
             position: relative;
+        }
+        
+        #sky {
         }
         
         #sun {
@@ -426,8 +430,10 @@
     <div id="back"></div>
     <div id="area">
         <div id="main">
-            <div id="sun"></div>
-            <div id="moon"></div>
+            <div id="sky">
+                <div id="sun"></div>
+                <div id="moon"></div>
+            </div>
             <div id="tree">
                 <div id="tree_star"></div>
                 <div id="tree_head">
@@ -478,7 +484,7 @@
             </div>
         </div>
     </div>
-    
+
     <script src="js/leaves.js"></script>
 </body>
 
