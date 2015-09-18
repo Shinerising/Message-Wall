@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="user-scalable=no">
     <title>Message Wall</title>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -16,15 +16,28 @@
     <style>
         @font-face {
             font-family: 'FontAwesome';
-            src: url('../fonts/fontawesome-webfont.eot?v=4.4.0');
+            src: url('../fonts/fontawesome-webfont.woff2?v=4.4.0') format('woff2'), url('../fonts/fontawesome-webfont.ttf?v=4.4.0') format('truetype');
             font-weight: normal;
             font-style: normal;
         }
         
+        .noselect {
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        
+        html {}
+        
         body {
             margin: 0;
             border: none;
-            background: rgba(240, 240, 240, 1);
+            background: rgba(130, 200, 250, 1);
+            background: -webkit-linear-gradient(top, rgba(100, 100, 250, 1), rgba(250, 250, 250, 1));
+            background: -webkit-linear-gradient(top, rgba(130, 200, 250, 1), rgba(250, 250, 250, 1));
         }
         
         #area {
@@ -33,7 +46,40 @@
         }
         
         #main {
-            position:relative;
+            position: relative;
+        }
+        
+        #sun {
+            position: absolute;
+            left: 50px;
+            top: 100px;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: rgba(240, 200, 100, 1);
+            background: radial-gradient(rgba(240, 200, 100, 1), rgba(240, 240, 140, 1));
+            box-shadow: 0px 0px 50px rgba(240, 200, 100, 1);
+        }
+        
+        #moon {
+            position: absolute;
+            left: 650px;
+            top: 100px;
+            width: 100px;
+            height: 100px;
+            -webkit-mask: -webkit-linear-gradient(top left, rgba(1, 1, 1, .3), rgba(1, 1, 1, 1));
+            border-radius: 50%;
+            display: none;
+        }
+        
+        #moon:after {
+            content: "";
+            position: absolute;
+            width: 80%;
+            height: 80%;
+            border-radius: 50%;
+            border-right: rgba(240, 240, 250, 1) solid 30px;
+            border-bottom: rgba(240, 240, 250, 1) solid 30px;
         }
         
         #tree {
@@ -43,48 +89,194 @@
         
         #tree_body {
             width: 100%;
-            z-index:9;
-            position:relative;
+            z-index: 9;
+            position: relative;
         }
         
-        .tree_part{ 
-	width: 0;
-	height:0;
-            margin-bottom:-180px;
-	border-left: 400px solid transparent;
-	border-right: 400px solid transparent;
-	border-bottom: 300px solid rgba(100,200,100,1);
+        .tree_part {
+            width: 100%;
+            height: 200px;
+            position: relative;
         }
         
-        #tree_head{
-            position:relative;
-            width:160px;
-            height:160px;
-            margin:0 auto;
-            margin-bottom:-100px;
-            z-index:10;
+        .tree_part01 {
+            position: absolute;
+            width: 50%;
+            height: 100%;
+            left: 12%;
+            border-radius: 0 0 0 20px;
+            background: -webkit-linear-gradient(top, rgba(120, 220, 120, 1), rgba(100, 200, 100, 1));
+            transform: skewX(-40deg);
         }
         
-        #tree_head:after{
+        .tree_part01shadow {
+            position: absolute;
+            width: 50%;
+            height: 100%;
+            left: 12%;
+            border-radius: 0 0 0 20px;
+            transform: skewX(-40deg);
+            box-shadow: 0px 10px 5px rgba(100, 100, 100, .3);
+        }
+        
+        .tree_part02 {
+            position: absolute;
+            width: 50%;
+            height: 100%;
+            right: 12%;
+            border-radius: 0 0 20px 0;
+            background: -webkit-linear-gradient(top, rgba(120, 220, 120, 1), rgba(100, 200, 100, 1));
+            transform: skewX(40deg);
+        }
+        
+        .tree_part02shadow {
+            position: absolute;
+            width: 50%;
+            height: 100%;
+            right: 12%;
+            border-radius: 0 0 20px 0;
+            transform: skewX(40deg);
+            box-shadow: 0px 10px 5px rgba(100, 100, 100, .3);
+        }
+        
+        #tree_head {
+            width: 100%;
+            height: 500px;
+            position: relative;
+        }
+        
+        #tree_head01 {
+            width: 50%;
+            height: 520px;
+            left: 0px;
+            position: absolute;
+            overflow: hidden;
+        }
+        
+        #tree_head02 {
+            position: absolute;
+            width: 100%;
+            height: 500px;
+            left: 55%;
+            border-radius: 0 0 0 20px;
+            background: -webkit-linear-gradient(top, rgba(120, 220, 120, 1), rgba(100, 200, 100, 1));
+            transform: skewX(-40deg);
+        }
+        
+        .tree_head02shadow {
+            position: absolute;
+            width: 100%;
+            height: 500px;
+            left: 55%;
+            border-radius: 0 0 0 20px;
+            transform: skewX(-40deg);
+            box-shadow: 0px 10px 5px rgba(100, 100, 100, .3);
+        }
+        
+        #tree_head03 {
+            width: 50%;
+            height: 520px;
+            right: 0px;
+            position: absolute;
+            overflow: hidden;
+        }
+        
+        #tree_head04 {
+            position: absolute;
+            width: 100%;
+            height: 500px;
+            right: 55%;
+            border-radius: 0 0 20px 0;
+            background: -webkit-linear-gradient(top, rgba(120, 220, 120, 1), rgba(100, 200, 100, 1));
+            transform: skewX(40deg);
+        }
+        
+        .tree_head04shadow {
+            position: absolute;
+            width: 100%;
+            height: 500px;
+            right: 55%;
+            border-radius: 0 0 20px 0;
+            transform: skewX(40deg);
+            box-shadow: 0px 10px 5px rgba(100, 100, 100, .3);
+        }
+        
+        #tree_star {
+            position: relative;
+            width: 160px;
+            height: 160px;
+            margin: 0 auto;
+            margin-bottom: -140px;
+            z-index: 10;
+            padding-left: 10px;
+        }
+        
+        #tree_star:after {
+            position: absolute;
             content: "\f005";
             font: normal normal normal 160px/1 FontAwesome;
             color: gold;
+            -webkit-mask: -webkit-linear-gradient(top, rgba(1, 1, 1, .5), rgba(1, 1, 1, 1));
         }
         
-        #tree_foot  {
-            position:relative;
-            width:100px;
-            height:0px;
-            margin:0 auto;
-	border-left: 200px solid transparent;
-	border-right: 200px solid transparent;
-	border-bottom: 400px solid rgba(200,140,100,1);
-            z-index:3;
+        #tree_star:before {
+            position: absolute;
+            content: "\f005";
+            font: normal normal normal 160px/1 FontAwesome;
+            color: white;
         }
         
-        #leaves{
-            position:absolute;
-            z-index:12;
+        #tree_foot {
+            width: 30%;
+            height: 350px;
+            margin: 0 auto;
+            z-index: 10;
+            position: relative;
+        }
+        
+        .tree_foot01 {
+            position: absolute;
+            width: 50%;
+            height: 100%;
+            left: 12%;
+            border-radius: 0 0 0 20px;
+            background: -webkit-linear-gradient(top, rgba(220, 160, 120, 1), rgba(200, 140, 100, 1));
+            transform: skewX(-6deg);
+        }
+        
+        .tree_foot02 {
+            position: absolute;
+            width: 50%;
+            height: 100%;
+            right: 12%;
+            border-radius: 0 0 20px 0;
+            background: -webkit-linear-gradient(top, rgba(220, 160, 120, 1), rgba(200, 140, 100, 1));
+            transform: skewX(6deg);
+        }
+        
+        .tree_foot01shadow {
+            position: absolute;
+            width: 50%;
+            height: 100%;
+            left: 12%;
+            border-radius: 0 0 0 20px;
+            transform: skewX(-6deg);
+            box-shadow: 0px 10px 5px rgba(100, 100, 100, .3);
+        }
+        
+        .tree_foot02shadow {
+            position: absolute;
+            width: 50%;
+            height: 100%;
+            right: 12%;
+            border-radius: 0 0 20px 0;
+            transform: skewX(6deg);
+            box-shadow: 0px 10px 5px rgba(100, 100, 100, .3);
+        }
+        
+        #leaves {
+            position: absolute;
+            z-index: 12;
             left: 0px;
             top: 0px;
         }
@@ -92,51 +284,90 @@
         .leaf {
             width: 320px;
             height: 320px;
-            position:absolute;
-            margin:0 auto;
+            position: absolute;
+            margin: 0 auto;
             cursor: pointer;
         }
         
-        #le_01{
-            left:100px;
-            top:150px;
-            transform:scale(0.4) rotate(10deg);
+        #le_01 {
+            left: 100px;
+            top: 150px;
+            transform: scale(0.4) rotate(10deg);
         }
         
-        #le_02{
-            left:400px;
-            top:300px;
-            transform:scale(0.4) rotate(-10deg);
+        #le_02 {
+            left: 400px;
+            top: 200px;
+            transform: scale(0.4) rotate(-10deg);
         }
         
-        #le_03{
-            left:200px;
-            top:450px;
-            transform:scale(0.4) rotate(5deg);
+        #le_03 {
+            left: 200px;
+            top: 250px;
+            transform: scale(0.4) rotate(5deg);
         }
         
-        #le_04{
-            left:300px;
-            top:600px;
-            transform:scale(0.4) rotate(-5deg);
+        #le_04 {
+            left: 300px;
+            top: 350px;
+            transform: scale(0.4) rotate(-5deg);
         }
         
-        
-        
-        #le_01 .shape_heart:before{
-            color:lightyellow;
-        }
-        #le_02 .shape_heart:before{
-            color:lightcoral;
-        }
-        #le_03 .shape_heart:before{
-            color:deeppink;
-        }
-        #le_04 .shape_heart:before{
-            color:cyan;
+        #le_05 {
+            left: 100px;
+            top: 350px;
+            transform: scale(0.4) rotate(10deg);
         }
         
+        #le_06 {
+            left: 400px;
+            top: 450px;
+            transform: scale(0.4) rotate(-10deg);
+        }
         
+        #le_07 {
+            left: 200px;
+            top: 450px;
+            transform: scale(0.4) rotate(5deg);
+        }
+        
+        #le_08 {
+            left: 100px;
+            top: 550px;
+            transform: scale(0.4) rotate(10deg);
+        }
+        
+        .color01:before {
+            color: lightgoldenrodyellow;
+        }
+        
+        .color02:before {
+            color: mediumvioletred;
+        }
+        
+        .color03:before {
+            color: lightgreen;
+        }
+        
+        .color04:before {
+            color: deepskyblue;
+        }
+        
+        .color05:before {
+            color: orangered;
+        }
+        
+        .color06:before {
+            color: mediumturquoise;
+        }
+        
+        .color07:before {
+            color: hotpink;
+        }
+        
+        .color08:before {
+            color: red;
+        }
         
         .leaf_main:hover {
             width: 100%;
@@ -168,26 +399,30 @@
             height: 100%;
             content: "\f004";
             font: normal normal normal 320px/1 FontAwesome;
-            color: deeppink;
             -webkit-mask: -webkit-linear-gradient(top, rgba(1, 1, 1, .5), rgba(1, 1, 1, 1));
             text-shadow: 0px 10px 5px rgba(100, 100, 100, .3);
         }
         
         .leaf_info {
-            margin: 25% auto;
-            width: 90%;
+            margin: 28% auto;
+            width: 80%;
             -webkit-mask: #000;
         }
         
         .leaf_text {
             text-align: center;
-            font: normal normal normal 40px/1.5 Cursive;
+            width: 100%;
+            height: 76.8px;
+            overflow: hidden;
+            font: normal normal normal 32px/1.2 Cursive;
             color: #000;
         }
         
         .leaf_name {
             margin: 10% auto;
-            width: 100%;
+            width: 60%;
+            height: 24px;
+            overflow: hidden;
             text-align: center;
             font: normal normal normal 24px/1 Cursive;
             color: #000;
@@ -216,66 +451,151 @@
 <body>
     <div id="area">
         <div id="main">
+            <div id="sun"></div>
+            <div id="moon"></div>
             <div id="tree">
-                <div id="tree_head"></div>
-                <div id="tree_body">
-                    <div class="tree_part"></div>
-                    <div class="tree_part"></div>
-                    <div class="tree_part"></div>
-                    <div class="tree_part"></div>
-                    <div class="tree_part"></div>
+                <div id="tree_star"></div>
+                <div id="tree_head">
+                    <div id="tree_head01">
+                        <div class="tree_head02shadow"></div>
+                        <div id="tree_head02"></div>
+                    </div>
+                    <div id="tree_head03">
+                        <div class="tree_head04shadow"></div>
+                        <div id="tree_head04"></div>
+                    </div>
                 </div>
-                <div id="tree_foot"></div>
+                <div id="tree_body">
+                    <div class="tree_part">
+                        <div class="tree_part01shadow"></div>
+                        <div class="tree_part02shadow"></div>
+                        <div class="tree_part01"></div>
+                        <div class="tree_part02"></div>
+                    </div>
+                    <div class="tree_part">
+                        <div class="tree_part01shadow"></div>
+                        <div class="tree_part02shadow"></div>
+                        <div class="tree_part01"></div>
+                        <div class="tree_part02"></div>
+                    </div>
+                    <div class="tree_part">
+                        <div class="tree_part01shadow"></div>
+                        <div class="tree_part02shadow"></div>
+                        <div class="tree_part01"></div>
+                        <div class="tree_part02"></div>
+                    </div>
+                </div>
+                <div id="tree_foot">
+                    <div class="tree_foot01shadow"></div>
+                    <div class="tree_foot02shadow"></div>
+                    <div class="tree_foot01"></div>
+                    <div class="tree_foot02"></div>
+                </div>
             </div>
             <div id="leaves">
-            <div class="leaf" id="le_01">
-                <div class="leaf_main">
-                <div class="leaf_back">
-                    <div class="shape_back shape_text"></div>
-                    <div class="shape_heart shape_text"></div>
+                <div class="leaf noselect" id="le_01">
+                    <div class="leaf_main">
+                        <div class="leaf_back">
+                            <div class="shape_back shape_text"></div>
+                            <div class="shape_heart shape_text color01"></div>
+                        </div>
+                        <div class="leaf_info">
+                            <div class="leaf_text">Bullshit!</div>
+                            <div class="leaf_name">Apollo Wayne</div>
+                        </div>
+                    </div>
                 </div>
-                <div class="leaf_info">
-                    <div class="leaf_text">Bullshit!</div>
-                    <div class="leaf_name">Apollo Wayne</div>
-                </div></div>
-            </div>
-                
-            <div class="leaf" id="le_02">
-                <div class="leaf_main">
-                <div class="leaf_back">
-                    <div class="shape_back shape_text"></div>
-                    <div class="shape_heart shape_text"></div>
+
+                <div class="leaf noselect" id="le_02">
+                    <div class="leaf_main">
+                        <div class="leaf_back">
+                            <div class="shape_back shape_text"></div>
+                            <div class="shape_heart shape_text color02"></div>
+                        </div>
+                        <div class="leaf_info">
+                            <div class="leaf_text">Yes we can!</div>
+                            <div class="leaf_name">Barack Obama</div>
+                        </div>
+                    </div>
                 </div>
-                <div class="leaf_info">
-                    <div class="leaf_text">Yes we can!</div>
-                    <div class="leaf_name">Barack Obama</div>
-                </div></div>
-            </div>
-                
-            <div class="leaf" id="le_03">
-                <div class="leaf_main">
-                <div class="leaf_back">
-                    <div class="shape_back shape_text"></div>
-                    <div class="shape_heart shape_text"></div>
+
+                <div class="leaf noselect" id="le_03">
+                    <div class="leaf_main">
+                        <div class="leaf_back">
+                            <div class="shape_back shape_text"></div>
+                            <div class="shape_heart shape_text color03"></div>
+                        </div>
+                        <div class="leaf_info">
+                            <div class="leaf_text">我随便一写就是如此标准的十五字</div>
+                            <div class="leaf_name">贴吧大神</div>
+                        </div>
+                    </div>
                 </div>
-                <div class="leaf_info">
-                    <div class="leaf_text">Too young!</div>
-                    <div class="leaf_name">Chairman Jiang</div>
-                </div></div>
-            </div>
-                
-            <div class="leaf" id="le_04">
-                <div class="leaf_main">
-                <div class="leaf_back">
-                    <div class="shape_back shape_text"></div>
-                    <div class="shape_heart shape_text"></div>
+
+                <div class="leaf noselect" id="le_04">
+                    <div class="leaf_main">
+                        <div class="leaf_back">
+                            <div class="shape_back shape_text"></div>
+                            <div class="shape_heart shape_text color04"></div>
+                        </div>
+                        <div class="leaf_info">
+                            <div class="leaf_text">然而并没有什么卵用。</div>
+                            <div class="leaf_name">HGZ</div>
+                        </div>
+                    </div>
                 </div>
-                <div class="leaf_info">
-                    <div class="leaf_text">Hello World!</div>
-                    <div class="leaf_name">NULL</div>
-                </div></div>
-            </div>
-                
+                <div class="leaf noselect" id="le_05">
+                    <div class="leaf_main">
+                        <div class="leaf_back">
+                            <div class="shape_back shape_text"></div>
+                            <div class="shape_heart shape_text color05"></div>
+                        </div>
+                        <div class="leaf_info">
+                            <div class="leaf_text">我随便一写就是如此标准的十五字</div>
+                            <div class="leaf_name">贴吧大神</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="leaf noselect" id="le_06">
+                    <div class="leaf_main">
+                        <div class="leaf_back">
+                            <div class="shape_back shape_text"></div>
+                            <div class="shape_heart shape_text color06"></div>
+                        </div>
+                        <div class="leaf_info">
+                            <div class="leaf_text">我随便一写就是如此标准的十五字</div>
+                            <div class="leaf_name">贴吧大神</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="leaf noselect" id="le_07">
+                    <div class="leaf_main">
+                        <div class="leaf_back">
+                            <div class="shape_back shape_text"></div>
+                            <div class="shape_heart shape_text color07"></div>
+                        </div>
+                        <div class="leaf_info">
+                            <div class="leaf_text">我随便一写就是如此标准的十五字</div>
+                            <div class="leaf_name">贴吧大神</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="leaf noselect" id="le_08">
+                    <div class="leaf_main">
+                        <div class="leaf_back">
+                            <div class="shape_back shape_text"></div>
+                            <div class="shape_heart shape_text color08"></div>
+                        </div>
+                        <div class="leaf_info">
+                            <div class="leaf_text">我随便一写就是如此标准的十五字</div>
+                            <div class="leaf_name">贴吧大神</div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
