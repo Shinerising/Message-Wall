@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="user-scalable=no">
     <title>Message Wall</title>
+    <script src="js/jquery-2.1.3.min.js"></script>
+    <script src="js/func.js"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -101,9 +103,9 @@
         
         .tree_part01 {
             position: absolute;
-            width: 50%;
+            width: 65%;
             height: 100%;
-            left: 12%;
+            left: 0;
             border-radius: 0 0 0 20px;
             background: -webkit-linear-gradient(top, rgba(120, 220, 120, 1), rgba(100, 200, 100, 1));
             transform: skewX(-40deg);
@@ -111,9 +113,9 @@
         
         .tree_part01shadow {
             position: absolute;
-            width: 50%;
+            width: 65%;
             height: 100%;
-            left: 12%;
+            left: 0;
             border-radius: 0 0 0 20px;
             transform: skewX(-40deg);
             box-shadow: 0px 10px 5px rgba(100, 100, 100, .3);
@@ -121,9 +123,9 @@
         
         .tree_part02 {
             position: absolute;
-            width: 50%;
+            width: 65%;
             height: 100%;
-            right: 12%;
+            right: 0;
             border-radius: 0 0 20px 0;
             background: -webkit-linear-gradient(top, rgba(120, 220, 120, 1), rgba(100, 200, 100, 1));
             transform: skewX(40deg);
@@ -131,9 +133,9 @@
         
         .tree_part02shadow {
             position: absolute;
-            width: 50%;
+            width: 65%;
             height: 100%;
-            right: 12%;
+            right: 0;
             border-radius: 0 0 20px 0;
             transform: skewX(40deg);
             box-shadow: 0px 10px 5px rgba(100, 100, 100, .3);
@@ -141,14 +143,14 @@
         
         #tree_head {
             width: 100%;
-            height: 500px;
+            height: 600px;
             position: relative;
         }
         
         #tree_head01 {
-            width: 50%;
-            height: 520px;
-            left: 0px;
+            width: 60%;
+            height: 620px;
+            left: -10%;
             position: absolute;
             overflow: hidden;
         }
@@ -156,8 +158,8 @@
         #tree_head02 {
             position: absolute;
             width: 100%;
-            height: 500px;
-            left: 55%;
+            height: 600px;
+            left: 52%;
             border-radius: 0 0 0 20px;
             background: -webkit-linear-gradient(top, rgba(120, 220, 120, 1), rgba(100, 200, 100, 1));
             transform: skewX(-40deg);
@@ -166,17 +168,17 @@
         .tree_head02shadow {
             position: absolute;
             width: 100%;
-            height: 500px;
-            left: 55%;
+            height: 600px;
+            left: 52%;
             border-radius: 0 0 0 20px;
             transform: skewX(-40deg);
             box-shadow: 0px 10px 5px rgba(100, 100, 100, .3);
         }
         
         #tree_head03 {
-            width: 50%;
-            height: 520px;
-            right: 0px;
+            width: 60%;
+            height: 620px;
+            right: -10%;
             position: absolute;
             overflow: hidden;
         }
@@ -184,8 +186,8 @@
         #tree_head04 {
             position: absolute;
             width: 100%;
-            height: 500px;
-            right: 55%;
+            height: 600px;
+            right: 52%;
             border-radius: 0 0 20px 0;
             background: -webkit-linear-gradient(top, rgba(120, 220, 120, 1), rgba(100, 200, 100, 1));
             transform: skewX(40deg);
@@ -194,8 +196,8 @@
         .tree_head04shadow {
             position: absolute;
             width: 100%;
-            height: 500px;
-            right: 55%;
+            height: 600px;
+            right: 52%;
             border-radius: 0 0 20px 0;
             transform: skewX(40deg);
             box-shadow: 0px 10px 5px rgba(100, 100, 100, .3);
@@ -261,7 +263,7 @@
             left: 12%;
             border-radius: 0 0 0 20px;
             transform: skewX(-6deg);
-            box-shadow: 0px 10px 5px rgba(100, 100, 100, .3);
+            box-shadow: -5px 5px 5px rgba(100, 100, 100, .3);
         }
         
         .tree_foot02shadow {
@@ -271,7 +273,7 @@
             right: 12%;
             border-radius: 0 0 20px 0;
             transform: skewX(6deg);
-            box-shadow: 0px 10px 5px rgba(100, 100, 100, .3);
+            box-shadow: 5px 5px 5px rgba(100, 100, 100, .3);
         }
         
         #leaves {
@@ -282,59 +284,60 @@
         }
         
         .leaf {
-            width: 320px;
-            height: 320px;
+            width: 800px;
+            height: 800px;
             position: absolute;
             margin: 0 auto;
             cursor: pointer;
+            transition: transform .5s, left .5s, top .5s, z-index .5s;
         }
         
         #le_01 {
             left: 100px;
             top: 150px;
-            transform: scale(0.4) rotate(10deg);
+            transform: scale(0.2) rotate(10deg);
         }
         
         #le_02 {
             left: 400px;
             top: 200px;
-            transform: scale(0.4) rotate(-10deg);
+            transform: scale(0.2) rotate(-10deg);
         }
         
         #le_03 {
             left: 200px;
             top: 250px;
-            transform: scale(0.4) rotate(5deg);
+            transform: scale(0.2) rotate(5deg);
         }
         
         #le_04 {
             left: 300px;
             top: 350px;
-            transform: scale(0.4) rotate(-5deg);
+            transform: scale(0.2) rotate(-5deg);
         }
         
         #le_05 {
             left: 100px;
             top: 350px;
-            transform: scale(0.4) rotate(10deg);
+            transform: scale(0.2) rotate(10deg);
         }
         
         #le_06 {
             left: 400px;
             top: 450px;
-            transform: scale(0.4) rotate(-10deg);
+            transform: scale(0.2) rotate(-10deg);
         }
         
         #le_07 {
             left: 200px;
             top: 450px;
-            transform: scale(0.4) rotate(5deg);
+            transform: scale(0.2) rotate(5deg);
         }
         
         #le_08 {
             left: 100px;
             top: 550px;
-            transform: scale(0.4) rotate(10deg);
+            transform: scale(0.2) rotate(10deg);
         }
         
         .color01:before {
@@ -372,7 +375,6 @@
         .leaf_main:hover {
             width: 100%;
             height: 100%;
-            animation: leaf_quiver 0.3s;
         }
         
         .leaf_back {
@@ -384,7 +386,7 @@
             width: 100%;
             height: 100%;
             content: "\f004";
-            font: normal normal normal 320px/1 FontAwesome;
+            font: normal normal normal 800px/1 FontAwesome;
             color: white;
         }
         
@@ -398,34 +400,45 @@
             width: 100%;
             height: 100%;
             content: "\f004";
-            font: normal normal normal 320px/1 FontAwesome;
+            font: normal normal normal 800px/1 FontAwesome;
             -webkit-mask: -webkit-linear-gradient(top, rgba(1, 1, 1, .5), rgba(1, 1, 1, 1));
             text-shadow: 0px 10px 5px rgba(100, 100, 100, .3);
         }
         
         .leaf_info {
-            margin: 28% auto;
+            margin: 24% auto;
             width: 80%;
-            -webkit-mask: #000;
         }
         
         .leaf_text {
             text-align: center;
             width: 100%;
-            height: 76.8px;
+            height: 0px;
             overflow: hidden;
             font: normal normal normal 32px/1.2 Cursive;
             color: #000;
+            transition: height 0.5s;
+        }
+        
+        .fullshow .leaf_text {
+            height: 268.8px;
         }
         
         .leaf_name {
-            margin: 10% auto;
-            width: 60%;
-            height: 24px;
+            margin: 5% auto;
+            width: 100%;
+            height: 144px;
             overflow: hidden;
             text-align: center;
-            font: normal normal normal 24px/1 Cursive;
+            font: normal normal normal 48px/1.5 Cursive;
+            font-size: 96px;
             color: #000;
+            transition: height 0.5s, font-size 0.5s;
+        }
+        
+        .fullshow .leaf_name {
+            height: 72px;
+            font-size: 48px;
         }
         
         @keyframes leaf_quiver {
@@ -484,6 +497,12 @@
                         <div class="tree_part01"></div>
                         <div class="tree_part02"></div>
                     </div>
+                    <div class="tree_part">
+                        <div class="tree_part01shadow"></div>
+                        <div class="tree_part02shadow"></div>
+                        <div class="tree_part01"></div>
+                        <div class="tree_part02"></div>
+                    </div>
                 </div>
                 <div id="tree_foot">
                     <div class="tree_foot01shadow"></div>
@@ -493,20 +512,20 @@
                 </div>
             </div>
             <div id="leaves">
-                <div class="leaf noselect" id="le_01">
+                <div class="leaf" id="le_01" show="false" style="left: -100px;top: 150px;transform: scale(0.2) rotate(10deg);" ostyle="">
                     <div class="leaf_main">
                         <div class="leaf_back">
                             <div class="shape_back shape_text"></div>
                             <div class="shape_heart shape_text color01"></div>
                         </div>
                         <div class="leaf_info">
-                            <div class="leaf_text">Bullshit!</div>
+                            <div class="leaf_text">通过在非官方渠道下载的 Xcode 编译出来的 app 被注入了第三方的代码，会向一个网站上传数据。经过测试，带木马的应用包括：高德地图，网易云音乐，滴滴打车，联通，12306。这覆盖率基本50%以上的iOS用户都受到影响了。 测试测试测试测试测试测试测试测试测试测试测试测试测试</div>
                             <div class="leaf_name">Apollo Wayne</div>
                         </div>
                     </div>
                 </div>
 
-                <div class="leaf noselect" id="le_02">
+                <div class="leaf" id="le_02">
                     <div class="leaf_main">
                         <div class="leaf_back">
                             <div class="shape_back shape_text"></div>
@@ -519,7 +538,7 @@
                     </div>
                 </div>
 
-                <div class="leaf noselect" id="le_03">
+                <div class="leaf" id="le_03">
                     <div class="leaf_main">
                         <div class="leaf_back">
                             <div class="shape_back shape_text"></div>
@@ -532,7 +551,7 @@
                     </div>
                 </div>
 
-                <div class="leaf noselect" id="le_04">
+                <div class="leaf" id="le_04">
                     <div class="leaf_main">
                         <div class="leaf_back">
                             <div class="shape_back shape_text"></div>
@@ -544,7 +563,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="leaf noselect" id="le_05">
+                <div class="leaf" id="le_05">
                     <div class="leaf_main">
                         <div class="leaf_back">
                             <div class="shape_back shape_text"></div>
@@ -557,7 +576,7 @@
                     </div>
                 </div>
 
-                <div class="leaf noselect" id="le_06">
+                <div class="leaf" id="le_06">
                     <div class="leaf_main">
                         <div class="leaf_back">
                             <div class="shape_back shape_text"></div>
@@ -570,7 +589,7 @@
                     </div>
                 </div>
 
-                <div class="leaf noselect" id="le_07">
+                <div class="leaf" id="le_07">
                     <div class="leaf_main">
                         <div class="leaf_back">
                             <div class="shape_back shape_text"></div>
@@ -583,7 +602,7 @@
                     </div>
                 </div>
 
-                <div class="leaf noselect" id="le_08">
+                <div class="leaf" id="le_08">
                     <div class="leaf_main">
                         <div class="leaf_back">
                             <div class="shape_back shape_text"></div>
@@ -599,7 +618,8 @@
             </div>
         </div>
     </div>
-
+    
+    <script src="js/leaves.js"></script>
 </body>
 
 </html>
