@@ -32,6 +32,14 @@
             user-select: none;
         }
         
+        .hide {
+            display: none;
+        }
+        
+        div {
+            -webkit-tap-highlight-color: transparent;
+        }
+        
         html {}
         
         body {
@@ -96,6 +104,16 @@
             border-bottom: rgba(240, 240, 250, 1) solid 30px;
         }
         
+        #test {
+            position: fixed;
+            opacity: 0;
+        }
+        
+        #test:after {
+            content: "\f005";
+            font: normal normal normal 160px/1 FontAwesome;
+        }
+        
         #tree {
             width: 800px;
             margin: 0 auto;
@@ -121,6 +139,7 @@
             border-radius: 0 0 0 50px;
             background: -webkit-linear-gradient(top, rgba(120, 220, 120, 1), rgba(100, 200, 100, 1));
             transform: skewX(-40deg);
+            -webkit-transform: skewX(-40deg);
         }
         
         .tree_part01shadow {
@@ -130,6 +149,7 @@
             left: 0;
             border-radius: 0 0 0 50px;
             transform: skewX(-40deg);
+            -webkit-transform: skewX(-40deg);
             box-shadow: 0px 10px 5px rgba(100, 100, 100, .3);
         }
         
@@ -141,6 +161,7 @@
             border-radius: 0 0 50px 0;
             background: -webkit-linear-gradient(top, rgba(120, 220, 120, 1), rgba(100, 200, 100, 1));
             transform: skewX(40deg);
+            -webkit-transform: skewX(40deg);
         }
         
         .tree_part02shadow {
@@ -150,6 +171,7 @@
             right: 0;
             border-radius: 0 0 50px 0;
             transform: skewX(40deg);
+            -webkit-transform: skewX(40deg);
             box-shadow: 0px 10px 5px rgba(100, 100, 100, .3);
         }
         
@@ -175,6 +197,7 @@
             border-radius: 0 0 0 50px;
             background: -webkit-linear-gradient(top, rgba(120, 220, 120, 1), rgba(100, 200, 100, 1));
             transform: skewX(-40deg);
+            -webkit-transform: skewX(-40deg);
         }
         
         .tree_head02shadow {
@@ -184,6 +207,7 @@
             left: 52%;
             border-radius: 0 0 0 50px;
             transform: skewX(-40deg);
+            -webkit-transform: skewX(-40deg);
             box-shadow: 0px 10px 5px rgba(100, 100, 100, .3);
         }
         
@@ -203,6 +227,7 @@
             border-radius: 0 0 50px 0;
             background: -webkit-linear-gradient(top, rgba(120, 220, 120, 1), rgba(100, 200, 100, 1));
             transform: skewX(40deg);
+            -webkit-transform: skewX(40deg);
         }
         
         .tree_head04shadow {
@@ -212,6 +237,7 @@
             right: 52%;
             border-radius: 0 0 50px 0;
             transform: skewX(40deg);
+            -webkit-transform: skewX(40deg);
             box-shadow: 0px 10px 5px rgba(100, 100, 100, .3);
         }
         
@@ -220,9 +246,10 @@
             width: 160px;
             height: 160px;
             margin: 0 auto;
-            margin-bottom: -140px;
+            margin-bottom: -160px;
             z-index: 10;
             padding-left: 10px;
+            display: none;
         }
         
         #tree_star:after {
@@ -256,6 +283,7 @@
             border-radius: 0 0 0 20px;
             background: -webkit-linear-gradient(top, rgba(220, 160, 120, 1), rgba(200, 140, 100, 1));
             transform: skewX(-6deg);
+            -webkit-transform: skewX(-6deg);
         }
         
         .tree_foot02 {
@@ -266,6 +294,7 @@
             border-radius: 0 0 20px 0;
             background: -webkit-linear-gradient(top, rgba(220, 160, 120, 1), rgba(200, 140, 100, 1));
             transform: skewX(6deg);
+            -webkit-transform: skewX(6deg);
         }
         
         .tree_foot01shadow {
@@ -275,6 +304,7 @@
             left: 12%;
             border-radius: 0 0 0 20px;
             transform: skewX(-6deg);
+            -webkit-transform: skewX(-6deg);
             box-shadow: -5px 5px 5px rgba(100, 100, 100, .3);
         }
         
@@ -285,6 +315,7 @@
             right: 12%;
             border-radius: 0 0 20px 0;
             transform: skewX(6deg);
+            -webkit-transform: skewX(6deg);
             box-shadow: 5px 5px 5px rgba(100, 100, 100, .3);
         }
         
@@ -301,8 +332,8 @@
             position: absolute;
             margin: 0 auto;
             cursor: pointer;
-            transition: transform .5s, left .5s, top .5s, z-index .5s;
-            animation: fadeIn .5s;
+            transition: transform .5s, z-index .5s;
+            -webkit-transition: -webkit-transform .5s, z-index .5s;
         }
         
         .color01:before {
@@ -378,15 +409,19 @@
         .leaf_text {
             text-align: center;
             width: 100%;
-            height: 0px;
+            height: 270px;
             overflow: hidden;
             font: normal normal normal 45px/1.2 Cursive;
-            color: #000;
-            transition: height 0.5s;
+            color: rgba(0, 0, 0, .5);
+            transform: scale(0);
+            -webkit-transform: scale(0);
+            transition: transform 0.5s;
+            -webkit-transition: -webkit-transform .5s;
         }
         
         .fullshow .leaf_text {
-            height: 270px;
+            transform: scale(1);
+            -webkit-transform: scale(1);
         }
         
         .leaf_name {
@@ -396,14 +431,48 @@
             overflow: hidden;
             text-align: center;
             font: normal normal normal 48px/1.5 Cursive;
-            font-size: 96px;
-            color: #000;
-            transition: height 0.5s, font-size 0.5s;
+            color: rgba(0, 0, 0, .5);
+            transform: scale(2) translate(0px, -80px);
+            -webkit-transform: scale(2) translate(0px, -80px);
+            transition: transform .5s;
+            -webkit-transition: -webkit-transform .5s;
         }
         
         .fullshow .leaf_name {
-            height: 72px;
-            font-size: 48px;
+            transform: scale(1);
+            -webkit-transform: scale(1);
+        }
+        
+        .button_like {
+            position: relative;
+            width: 160px;
+            height: 160px;
+            margin: 0 auto;
+            margin-top: -200px;
+            border-radius: 50%;
+            transform: scale(0);
+            -webkit-transform: scale(0);
+            transition: transform .6s;
+            -webkit-transition: -webkit-transform .6s;
+            box-shadow: 0px 5px 5px rgba(100, 100, 100, .3);
+            background: rgba(50, 100, 250, 1);
+            background: -webkit-linear-gradient(top, rgba(50, 100, 250, 1), rgba(30, 80, 220, 1));
+        }
+        
+        .fullshow .button_like {
+            transform: scale(1);
+            -webkit-transform: scale(1);
+        }
+        
+        .button_like:after {
+            content: "\f087";
+            width: 50%;
+            margin-left: 25%;
+            height: 100%;
+            font: normal normal normal 100px/1.6 FontAwesome;
+            text-align: center;
+            color: white;
+            -webkit-mask: -webkit-linear-gradient(top, rgba(1, 1, 1, .5), rgba(1, 1, 1, 1));
         }
         
         #sendbox {
@@ -414,12 +483,16 @@
             right: 60px;
             bottom: 60px;
             cursor: pointer;
-            border-radius: 80px;
+            display: none;
+            border-radius: 50%;
             box-shadow: 0px 5px 5px rgba(100, 100, 100, .3);
             background: rgba(250, 250, 250, 1);
             background: -webkit-linear-gradient(top, rgba(250, 250, 250, 1), rgba(230, 230, 230, 1));
             animation: flow 0.5s 2s both;
-            transition: width .6s, height .6s, opacity .6s;
+            transform: scale(1) translate(0px, 0px);
+            -webkit-transform: scale(1) translate(0px, 0px);
+            transition: transform .6s, opacity .6s;
+            -webkit-transition: -webkit-transform .6s, opacity .6s;
         }
         
         #sendbox:hover {
@@ -435,32 +508,32 @@
         }
         
         #sendbox.expandbox {
-            width: 860px;
-            height: 860px;
-            opacity: 0;
-        }
-        
-        #sendbox.expandbox:after {
+            transform: scale(5) translate(-70px, -50px);
+            -webkit-transform: scale(5) translate(-70px, -50px);
             opacity: 0;
         }
         
         #sendleaf {
             position: fixed;
             z-index: 100001;
-            width: 0px;
-            height: 0px;
-            right: 160px;
-            bottom: 160px;
-            transform: scale(0);
-            transition: width .6s, height .6s, right .6s, bottom .6s, transform .6s;
+            width: 160px;
+            height: 160px;
+            right: 60px;
+            bottom: 60px;
+            transform: scale(0) translate(0px, 0px);
+            -webkit-transform: scale(0) translate(0px, 0px);
+            transition: transform .6s;
+            -webkit-transition: -webkit-transform .6s;
         }
         
         #sendleaf.expandbox {
-            width: 800px;
-            height: 800px;
-            right: 90px;
-            bottom: 180px;
-            transform: scale(1);
+            transform: scale(1) translate(55px, 0px);
+            -webkit-transform: scale(1) translate(55px, 0px);
+        }
+        
+        #le_send {
+            margin-top: -560px;
+            margin-left: -725px;
         }
         
         #sendleaf .leaf_info {
@@ -510,7 +583,7 @@
             position: absolute;
             font: normal normal normal 40px/1 Cursive;
             padding: 10px;
-            border-radius: 20px;
+            border-radius: 50px;
             background: rgba(250, 250, 250, .6);
             text-align: center;
             color: #888;
@@ -528,7 +601,7 @@
         }
         
         #sendbox:after {
-            content: "\f016";
+            content: "\f040";
             width: 50%;
             margin-left: 25%;
             height: 100%;
@@ -536,52 +609,96 @@
             text-align: center;
             color: gray;
             opacity: 1;
-            transition: opacity 0.6s;
             -webkit-mask: -webkit-linear-gradient(top, rgba(1, 1, 1, .5), rgba(1, 1, 1, 1));
         }
         
         #sendbuttons {
             position: fixed;
             z-index: 100002;
-            width: 320px;
-            height: 0;
-            right: 0px;
-            bottom: 160px;
-            transform: scale(0);
-            transition: width .6s, height .6s, right .6s, bottom .6s, transform .6s;
+            width: 160px;
+            height: 160px;
+            right: 60px;
+            bottom: 60px;
+            transform: scale(0) translate(0px, 0px);
+            -webkit-transform: scale(0) translate(0px, 0px);
+            transition: transform .6s;
+            -webkit-transition: -webkit-transform .6s;
         }
         
         #sendbuttons.expandbox {
-            transform: scale(1);
-            width: 800px;
-            height: 160px;
-            right: 80px;
-            bottom: 280px;
+            transform: scale(1) translate(55px, 0px);
+            -webkit-transform: scale(1) translate(55px, 0px);
         }
         
         #sendbuttons .button {
             position: absolute;
             width: 160px;
             height: 160px;
-            top: 120px;
+            top: 30px;
             border-radius: 50%;
-            transition: top .6s, width .6s, height .6s;
+            cursor: pointer;
         }
         
         #button_cancel {
             z-index: 100002;
-            left: 50px;
+            right: 720px;
             box-shadow: 0px 5px 5px rgba(100, 100, 100, .3);
             background: rgba(250, 150, 150, 1);
             background: -webkit-linear-gradient(top, rgba(250, 150, 150, 1), rgba(230, 130, 130, 1));
         }
         
+        #button_cancel:after {
+            content: "\f00d";
+            width: 50%;
+            margin-left: 25%;
+            height: 100%;
+            font: normal normal normal 100px/1.6 FontAwesome;
+            text-align: center;
+            color: white;
+            -webkit-mask: -webkit-linear-gradient(top, rgba(1, 1, 1, .5), rgba(1, 1, 1, 1));
+        }
+        
+        #button_cancel:hover {
+            background: rgba(255, 170, 170, 1);
+            background: -webkit-linear-gradient(top, rgba(255, 170, 170, 1), rgba(250, 150, 150, 1));
+            box-shadow: 0px 10px 10px rgba(100, 100, 100, .3);
+        }
+        
+        #button_cancel:active {
+            background: rgba(230, 130, 130, 1);
+            background: -webkit-linear-gradient(top, rgba(230, 130, 130, 1), rgba(250, 150, 150, 1));
+            box-shadow: 0px 5px 5px rgba(100, 100, 100, .3);
+        }
+        
         #button_submit {
             z-index: 100003;
-            right: 50px;
+            right: 90px;
             box-shadow: 0px 5px 5px rgba(100, 100, 100, .3);
-            background: rgba(250, 250, 250, 1);
+            background: rgba(150, 250, 150, 1);
             background: -webkit-linear-gradient(top, rgba(150, 250, 150, 1), rgba(130, 230, 130, 1));
+        }
+        
+        #button_submit:after {
+            content: "\f00c";
+            width: 50%;
+            margin-left: 20%;
+            height: 100%;
+            font: normal normal normal 100px/1.6 FontAwesome;
+            text-align: center;
+            color: white;
+            -webkit-mask: -webkit-linear-gradient(top, rgba(1, 1, 1, .5), rgba(1, 1, 1, 1));
+        }
+        
+        #button_submit:hover {
+            background: rgba(170, 255, 170, 1);
+            background: -webkit-linear-gradient(top, rgba(170, 255, 170, 1), rgba(150, 250, 150, 1));
+            box-shadow: 0px 10px 10px rgba(100, 100, 100, .3);
+        }
+        
+        #button_submit:active {
+            background: rgba(130, 220, 130, 1);
+            background: -webkit-linear-gradient(top, rgba(130, 220, 130, 1), rgba(150, 250, 150, 1));
+            box-shadow: 0px 5px 5px rgba(100, 100, 100, .3);
         }
         
         @keyframes leaf_quiver {
@@ -613,12 +730,10 @@
         
         @keyframes flow {
             from {
-                transform: scale(0);
-                bottom: -100px;
+                bottom: -200px;
             }
             to {
-                transform: scale(1);
-                bottom: 100px;
+                bottom: 50px;
             }
         }
     </style>
@@ -709,21 +824,40 @@
         <div id="button_cancel" class="button"></div>
         <div id="button_submit" class="button"></div>
     </div>
+    <div id="test"></div>
 
     <script src="js/leaves.js"></script>
     <script>
+        function init() {
+            $("#tree_star").fadeIn();
+            $("#sendbox").fadeIn();
+            for (i = 0; i < 20; i = i + 1) {
+                createLeaf(i, "Bullshit", "六个字的名字", i * 100);
+            }
+        }
+
+        function fontLoad() {
+            if ($("#test").width() > 140) {
+                init();
+            } else {
+                setTimeout("fontLoad()", 500);
+            }
+        }
+
         var leavesCount = 0;
         var fullLeafId = -1;
         $(document).ready(function () {
-            createLeaf(0, "Blackish House -ブラッキッシュハウス- ln.is/www.honeybee-c… 】我和葱葱子又中了www前野这个角色看图还以为是个狂霸吊结果是个死宅是怎样(´・ω・`)但是....还是俺得！我前野！！！", "Apollo Wayne");
-            createLeaf(1, "No wonder the economy didn't get mentioned in the GOP debate; it's doing too well wpo.st/JKja0", "Apollo Wayne");
-            createLeaf(2, "『黒ウィズ』のリアルクイズゲームイベントが東京大阪など4会場で実施決定 bit.ly/1LCoHHy ", "Apollo Wayne");
-            createLeaf(3, "呐，大家装WINDOWS系统也是从微软官方下载原版的吗？还是下载各种ghost版本？", "Apollo Wayne");
-
-            createLeaf(4, "总觉得智商受到了压制，晚上开组会没一个人讲的窝听懂了，只听懂了导师貌似特别壕经费花不光一听离心机坏了马上拍板买十台…", "Apollo Wayne");
             var i;
-            for (i = 5; i < 20; i = i + 1) {
-                createLeaf(i, "Bullshit", "六个字的名字");
+
+            fontLoad();
+
+            var docElm = document.documentElement;
+            if (docElm.requestFullscreen) {
+                docElm.requestFullscreen();
+            } else if (docElm.mozRequestFullScreen) {
+                docElm.mozRequestFullScreen();
+            } else if (docElm.webkitRequestFullScreen) {
+                docElm.webkitRequestFullScreen();
             }
         });
 
