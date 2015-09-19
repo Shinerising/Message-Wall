@@ -1,14 +1,11 @@
 $(document).ready(function () {
     'use strict';
-    $(".leaf").click(function () {
-        leaveOnClick(this);
-    });
 
     var cHour, left1;
     cHour = (new Date()).getHours();
 
     $("#back").css("opacity", 1 - Math.abs(cHour - 12) / 12);
-    
+
     left1 = 720 - cHour * 400 / 12;
     $("#sun").css("left", left1 + "px");
     $("#sun").css("top", Math.abs(cHour - 12) / 12 * 400 + "px");
@@ -23,29 +20,74 @@ $(document).ready(function () {
     $("#moon").css("top", Math.abs(cHour - 12) / 12 * 400 + "px");
     $("#moon").css("opacity", 1 - Math.abs(cHour - 12) / 6);
 
+    $("#sendbox").click(function () {
+        if (!($(this).hasClass("expandbox")) && $(this).width() === 160) {
+            $(this).addClass("expandbox");
+            var color = parseInt(Math.random() * 8, 10) + 1;
+            $("#sendleaf .shape_heart").removeClass("color01 color02 color03 color04 color05 color06 color07 color08 ").addClass("color0" + color);
+            $("#sendleaf").attr("color", color);
+        }
+        $("#sendleaf").css("opacity", "1");
+        if (!($("#sendleaf").hasClass("expandbox"))) {
+            $("#sendleaf").addClass("expandbox");
+        }
+        if (!($("#sendbuttons").hasClass("expandbox"))) {
+            $("#sendbuttons").addClass("expandbox");
+        }
+    });
+    $("#button_cancel").click(function () {
+        if ($("#sendbox").hasClass("expandbox")) {
+            $("#sendbox").removeClass("expandbox");
+        }
+        if ($("#sendleaf").hasClass("expandbox")) {
+            $("#sendleaf").removeClass("expandbox");
+        }
+        if ($("#sendbuttons").hasClass("expandbox")) {
+            $("#sendbuttons").removeClass("expandbox");
+        }
+    });
+    $("#button_submit").click(function () {
+        var color, text, name;
+        color = $("#sendleaf").attr("color");
+        text = $("#send_text").val();
+        name = $("#send_name").val();
+        if (text.length === 0 || text.length > 70) {
+            $("#send_text").focus();
+            $("#send_text").css("box-shadow", "0px 0px 30px rgba(250, 100, 100, 1) inset");
+        } else if (name.length === 0 || name.length > 8) {
+            $("#send_name").focus();
+            $("#send_name").css("box-shadow", "0px 0px 30px rgba(250, 100, 100, 1) inset");
+        } else {
+            $("#send_text").val("");
+            $("#send_name").val("");
+            createLeafFrom(leavesCount, text, name, 0, $("body").scrollTop() + 658, 0, color);
+            resumeLeafStyle(leavesCount);
+            leavesCount = leavesCount + 1;
+            $("#sendleaf").css("opacity", "0");
+            if ($("#sendbox").hasClass("expandbox")) {
+                $("#sendbox").removeClass("expandbox");
+            }
+            if ($("#sendleaf").hasClass("expandbox")) {
+                $("#sendleaf").removeClass("expandbox");
+            }
+            if ($("#sendbuttons").hasClass("expandbox")) {
+                $("#sendbuttons").removeClass("expandbox");
+            }
+        }
+    });
 
-    createLeaf(-240, 0, "Blackish House -ブラッキッシュハウス- ln.is/www.honeybee-c… 】我和葱葱子又中了www前野这个角色看图还以为是个狂霸吊结果是个死宅是怎样(´・ω・`)但是....还是俺得！我前野！！！", "Apollo Wayne");
-    createLeaf(240, 50, "No wonder the economy didn't get mentioned in the GOP debate; it's doing too well wpo.st/JKja0", "Apollo Wayne");
-    createLeaf(-90, 100, "『黒ウィズ』のリアルクイズゲームイベントが東京大阪など4会場で実施決定 bit.ly/1LCoHHy ", "Apollo Wayne");
-    createLeaf(90, 150, "呐，大家装WINDOWS系统也是从微软官方下载原版的吗？还是下载各种ghost版本？", "Apollo Wayne");
-    
-    createLeaf(-240, 200, "总觉得智商受到了压制，晚上开组会没一个人讲的窝听懂了，只听懂了导师貌似特别壕经费花不光一听离心机坏了马上拍板买十台…", "Apollo Wayne");
-    createLeaf(240, 250, "Bullshit", "Apollo Wayne");
-    createLeaf(-90, 300, "Bullshit", "Apollo Wayne");
-    createLeaf(90, 350, "Bullshit", "Apollo Wayne");
-    
-    createLeaf(-240, 400, "Bullshit", "Apollo Wayne");
-    createLeaf(240, 450, "Bullshit", "Apollo Wayne");
-    createLeaf(-90, 500, "Bullshit", "Apollo Wayne");
-    createLeaf(90, 550, "Bullshit", "Apollo Wayne");
-    
-    createLeaf(-240, 600, "Bullshit", "Apollo Wayne");
-    createLeaf(240, 650, "Bullshit", "Apollo Wayne");
-    createLeaf(-90, 700, "Bullshit", "Apollo Wayne");
-    createLeaf(90, 750, "Bullshit", "Apollo Wayne");
-    
-    createLeaf(-240, 800, "Bullshit", "Apollo Wayne");
-    createLeaf(240, 850, "Bullshit", "Apollo Wayne");
-    createLeaf(-90, 900, "Bullshit", "Apollo Wayne");
-    createLeaf(90, 950, "Bullshit", "Apollo Wayne");
+    $("body").click(function () {
+
+        var i, style;
+        for (i = 0; i < leavesCount; i = i + 1) {
+            if ($(".leaf:eq(" + i + ")").attr("id") !== "le_send") {
+                if ($(".leaf:eq(" + i + ")").hasClass("fullshow") && $(".leaf:eq(" + i + ")").css("z-index") === "1000") {
+                    style = $(".leaf:eq(" + i + ")").attr("ostyle");
+                    $(".leaf:eq(" + i + ")").attr("style", style);
+                    $(".leaf:eq(" + i + ")").removeClass("fullshow");
+                }
+            }
+        }
+    });
+
 });

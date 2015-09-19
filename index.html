@@ -18,7 +18,7 @@
     <style>
         @font-face {
             font-family: 'FontAwesome';
-            src: url('../fonts/fontawesome-webfont.woff2?v=4.4.0') format('woff2'), url('../fonts/fontawesome-webfont.ttf?v=4.4.0') format('truetype');
+            src: url('fonts/fontawesome-webfont.woff2?v=4.4.0') format('woff2'), url('fonts/fontawesome-webfont.ttf?v=4.4.0') format('truetype');
             font-weight: normal;
             font-style: normal;
         }
@@ -61,8 +61,7 @@
             position: relative;
         }
         
-        #sky {
-        }
+        #sky {}
         
         #sun {
             position: absolute;
@@ -119,7 +118,7 @@
             width: 65%;
             height: 100%;
             left: 0;
-            border-radius: 0 0 0 20px;
+            border-radius: 0 0 0 50px;
             background: -webkit-linear-gradient(top, rgba(120, 220, 120, 1), rgba(100, 200, 100, 1));
             transform: skewX(-40deg);
         }
@@ -129,7 +128,7 @@
             width: 65%;
             height: 100%;
             left: 0;
-            border-radius: 0 0 0 20px;
+            border-radius: 0 0 0 50px;
             transform: skewX(-40deg);
             box-shadow: 0px 10px 5px rgba(100, 100, 100, .3);
         }
@@ -139,7 +138,7 @@
             width: 65%;
             height: 100%;
             right: 0;
-            border-radius: 0 0 20px 0;
+            border-radius: 0 0 50px 0;
             background: -webkit-linear-gradient(top, rgba(120, 220, 120, 1), rgba(100, 200, 100, 1));
             transform: skewX(40deg);
         }
@@ -149,7 +148,7 @@
             width: 65%;
             height: 100%;
             right: 0;
-            border-radius: 0 0 20px 0;
+            border-radius: 0 0 50px 0;
             transform: skewX(40deg);
             box-shadow: 0px 10px 5px rgba(100, 100, 100, .3);
         }
@@ -173,7 +172,7 @@
             width: 100%;
             height: 600px;
             left: 52%;
-            border-radius: 0 0 0 20px;
+            border-radius: 0 0 0 50px;
             background: -webkit-linear-gradient(top, rgba(120, 220, 120, 1), rgba(100, 200, 100, 1));
             transform: skewX(-40deg);
         }
@@ -183,7 +182,7 @@
             width: 100%;
             height: 600px;
             left: 52%;
-            border-radius: 0 0 0 20px;
+            border-radius: 0 0 0 50px;
             transform: skewX(-40deg);
             box-shadow: 0px 10px 5px rgba(100, 100, 100, .3);
         }
@@ -201,7 +200,7 @@
             width: 100%;
             height: 600px;
             right: 52%;
-            border-radius: 0 0 20px 0;
+            border-radius: 0 0 50px 0;
             background: -webkit-linear-gradient(top, rgba(120, 220, 120, 1), rgba(100, 200, 100, 1));
             transform: skewX(40deg);
         }
@@ -211,7 +210,7 @@
             width: 100%;
             height: 600px;
             right: 52%;
-            border-radius: 0 0 20px 0;
+            border-radius: 0 0 50px 0;
             transform: skewX(40deg);
             box-shadow: 0px 10px 5px rgba(100, 100, 100, .3);
         }
@@ -303,6 +302,7 @@
             margin: 0 auto;
             cursor: pointer;
             transition: transform .5s, left .5s, top .5s, z-index .5s;
+            animation: fadeIn .5s;
         }
         
         .color01:before {
@@ -371,7 +371,7 @@
         }
         
         .leaf_info {
-            margin: 24% auto;
+            margin: 22% auto;
             width: 80%;
         }
         
@@ -380,13 +380,13 @@
             width: 100%;
             height: 0px;
             overflow: hidden;
-            font: normal normal normal 32px/1.2 Cursive;
+            font: normal normal normal 45px/1.2 Cursive;
             color: #000;
             transition: height 0.5s;
         }
         
         .fullshow .leaf_text {
-            height: 268.8px;
+            height: 270px;
         }
         
         .leaf_name {
@@ -406,21 +406,219 @@
             font-size: 48px;
         }
         
+        #sendbox {
+            position: fixed;
+            z-index: 100000;
+            width: 160px;
+            height: 160px;
+            right: 60px;
+            bottom: 60px;
+            cursor: pointer;
+            border-radius: 80px;
+            box-shadow: 0px 5px 5px rgba(100, 100, 100, .3);
+            background: rgba(250, 250, 250, 1);
+            background: -webkit-linear-gradient(top, rgba(250, 250, 250, 1), rgba(230, 230, 230, 1));
+            animation: flow 0.5s 2s both;
+            transition: width .6s, height .6s, opacity .6s;
+        }
+        
+        #sendbox:hover {
+            background: rgba(255, 255, 255, 1);
+            background: -webkit-linear-gradient(top, rgba(255, 255, 255, 1), rgba(240, 240, 240, 1));
+            box-shadow: 0px 10px 10px rgba(100, 100, 100, .3);
+        }
+        
+        #sendbox:active {
+            background: rgba(240, 240, 240, 1);
+            background: -webkit-linear-gradient(top, rgba(230, 230, 230, 1), rgba(240, 240, 240, 1));
+            box-shadow: 0px 5px 5px rgba(100, 100, 100, .3);
+        }
+        
+        #sendbox.expandbox {
+            width: 860px;
+            height: 860px;
+            opacity: 0;
+        }
+        
+        #sendbox.expandbox:after {
+            opacity: 0;
+        }
+        
+        #sendleaf {
+            position: fixed;
+            z-index: 100001;
+            width: 0px;
+            height: 0px;
+            right: 160px;
+            bottom: 160px;
+            transform: scale(0);
+            transition: width .6s, height .6s, right .6s, bottom .6s, transform .6s;
+        }
+        
+        #sendleaf.expandbox {
+            width: 800px;
+            height: 800px;
+            right: 90px;
+            bottom: 180px;
+            transform: scale(1);
+        }
+        
+        #sendleaf .leaf_info {
+            position: relative;
+        }
+        
+        #input_text {
+            color: #000;
+            margin-top: 10px;
+            height: 0px;
+        }
+        
+        #input_name {
+            color: #000;
+            height: 0px;
+        }
+        
+        #send_text {
+            width: 600px;
+            height: 250px;
+            border: none;
+            background: rgba(255, 255, 255, .8);
+            box-shadow: 0px 0px 30px rgba(100, 100, 100, 1) inset;
+            border-radius: 50px;
+            padding: 10px 20px;
+            margin-top: -10px;
+            font: normal normal normal 40px/1.2 Cursive;
+            color: #555;
+        }
+        
+        #send_name {
+            margin: 0 auto;
+            width: 400px;
+            height: 72px;
+            border: none;
+            background: rgba(255, 255, 255, .8);
+            box-shadow: 0px 0px 30px rgba(100, 100, 100, 1) inset;
+            border-radius: 50px;
+            padding: 0px 20px;
+            text-align: center;
+            font: normal normal normal 48px/1.5 Cursive;
+            color: #555;
+        }
+        
+        #charcount01,
+        #charcount02 {
+            position: absolute;
+            font: normal normal normal 40px/1 Cursive;
+            padding: 10px;
+            border-radius: 20px;
+            background: rgba(250, 250, 250, .6);
+            text-align: center;
+            color: #888;
+            opacity: 0;
+        }
+        
+        #charcount01 {
+            right: 20px;
+            top: 200px;
+        }
+        
+        #charcount02 {
+            right: 110px;
+            top: 308px;
+        }
+        
+        #sendbox:after {
+            content: "\f016";
+            width: 50%;
+            margin-left: 25%;
+            height: 100%;
+            font: normal normal normal 100px/1.6 FontAwesome;
+            text-align: center;
+            color: gray;
+            opacity: 1;
+            transition: opacity 0.6s;
+            -webkit-mask: -webkit-linear-gradient(top, rgba(1, 1, 1, .5), rgba(1, 1, 1, 1));
+        }
+        
+        #sendbuttons {
+            position: fixed;
+            z-index: 100002;
+            width: 320px;
+            height: 0;
+            right: 0px;
+            bottom: 160px;
+            transform: scale(0);
+            transition: width .6s, height .6s, right .6s, bottom .6s, transform .6s;
+        }
+        
+        #sendbuttons.expandbox {
+            transform: scale(1);
+            width: 800px;
+            height: 160px;
+            right: 80px;
+            bottom: 280px;
+        }
+        
+        #sendbuttons .button {
+            position: absolute;
+            width: 160px;
+            height: 160px;
+            top: 120px;
+            border-radius: 50%;
+            transition: top .6s, width .6s, height .6s;
+        }
+        
+        #button_cancel {
+            z-index: 100002;
+            left: 50px;
+            box-shadow: 0px 5px 5px rgba(100, 100, 100, .3);
+            background: rgba(250, 150, 150, 1);
+            background: -webkit-linear-gradient(top, rgba(250, 150, 150, 1), rgba(230, 130, 130, 1));
+        }
+        
+        #button_submit {
+            z-index: 100003;
+            right: 50px;
+            box-shadow: 0px 5px 5px rgba(100, 100, 100, .3);
+            background: rgba(250, 250, 250, 1);
+            background: -webkit-linear-gradient(top, rgba(150, 250, 150, 1), rgba(130, 230, 130, 1));
+        }
+        
         @keyframes leaf_quiver {
             0% {
                 transform: rotate(0deg);
             }
-            25% {
+            1% {
                 transform: rotate(-10deg);
             }
-            50% {
+            2% {
                 transform: rotate(10deg);
             }
-            75% {
+            3% {
                 transform: rotate(-10deg);
             }
-            100% {
+            4% {
                 transform: rotate(0deg);
+            }
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        @keyframes flow {
+            from {
+                transform: scale(0);
+                bottom: -100px;
+            }
+            to {
+                transform: scale(1);
+                bottom: 100px;
             }
         }
     </style>
@@ -484,8 +682,53 @@
             </div>
         </div>
     </div>
+    <div id="sendbox"></div>
+    <div id="sendleaf" color="01">
+        <div class="leaf fullshow" id="le_send" style="" ostyle="">
+            <div class="leaf_main">
+                <div class="leaf_back">
+                    <div class="shape_back shape_text"></div>
+                    <div class="shape_heart shape_text color01"></div>
+                </div>
+                <div class="leaf_info">
+                    <div class="leaf_text">
+                        <div id="input_text">请在这里输入您想说的话</div>
+                        <textarea id="send_text" value="" onkeyup="textChange()"></textarea>
+                    </div>
+                    <div class="leaf_name">
+                        <div id="input_name">然后写上您的名字</div>
+                        <input id="send_name" value="" onInput="nameChange()">
+                    </div>
+                    <div id="charcount01">70</div>
+                    <div id="charcount02">8</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="sendbuttons">
+        <div id="button_cancel" class="button"></div>
+        <div id="button_submit" class="button"></div>
+    </div>
 
     <script src="js/leaves.js"></script>
+    <script>
+        var leavesCount = 0;
+        var fullLeafId = -1;
+        $(document).ready(function () {
+            createLeaf(0, "Blackish House -ブラッキッシュハウス- ln.is/www.honeybee-c… 】我和葱葱子又中了www前野这个角色看图还以为是个狂霸吊结果是个死宅是怎样(´・ω・`)但是....还是俺得！我前野！！！", "Apollo Wayne");
+            createLeaf(1, "No wonder the economy didn't get mentioned in the GOP debate; it's doing too well wpo.st/JKja0", "Apollo Wayne");
+            createLeaf(2, "『黒ウィズ』のリアルクイズゲームイベントが東京大阪など4会場で実施決定 bit.ly/1LCoHHy ", "Apollo Wayne");
+            createLeaf(3, "呐，大家装WINDOWS系统也是从微软官方下载原版的吗？还是下载各种ghost版本？", "Apollo Wayne");
+
+            createLeaf(4, "总觉得智商受到了压制，晚上开组会没一个人讲的窝听懂了，只听懂了导师貌似特别壕经费花不光一听离心机坏了马上拍板买十台…", "Apollo Wayne");
+            var i;
+            for (i = 5; i < 20; i = i + 1) {
+                createLeaf(i, "Bullshit", "六个字的名字");
+            }
+        });
+
+        leavesCount = 20;
+    </script>
 </body>
 
 </html>
