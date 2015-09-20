@@ -54,7 +54,7 @@
             margin: 0;
             border: none;
             background: rgba(100, 100, 250, 1);
-            background: -webkit-linear-gradient(top, rgba(100, 100, 250, 1), rgba(80, 80, 160, 1));
+            background: -webkit-linear-gradient(top, rgba(100, 100, 250, 1), rgba(50, 50, 120, 1));
         }
         
         #back {
@@ -64,7 +64,7 @@
             top: 0px;
             left: 0px;
             background: rgba(130, 200, 250, 1);
-            background: -webkit-linear-gradient(top, rgba(130, 200, 250, 1), rgba(250, 250, 250, 1));
+            background: -webkit-linear-gradient(top, rgba(180, 230, 250, 1), rgba(130, 200, 250, 1));
         }
         
         #area {
@@ -201,7 +201,7 @@
             width: 100%;
             height: 600px;
             left: 52%;
-            border-radius: 0 0 0 50px;
+            border-radius: 200px 0 0 50px;
             background: -webkit-linear-gradient(top, rgba(120, 220, 120, 1), rgba(100, 200, 100, 1));
             transform: skewX(-40deg);
             -webkit-transform: skewX(-40deg);
@@ -212,7 +212,7 @@
             width: 100%;
             height: 600px;
             left: 52%;
-            border-radius: 0 0 0 50px;
+            border-radius: 200px 0 0 50px;
             transform: skewX(-40deg);
             -webkit-transform: skewX(-40deg);
             box-shadow: 0px 10px 5px rgba(100, 100, 100, .3);
@@ -231,7 +231,7 @@
             width: 100%;
             height: 600px;
             right: 52%;
-            border-radius: 0 0 50px 0;
+            border-radius: 0 200px 50px 0;
             background: -webkit-linear-gradient(top, rgba(120, 220, 120, 1), rgba(100, 200, 100, 1));
             transform: skewX(40deg);
             -webkit-transform: skewX(40deg);
@@ -242,7 +242,7 @@
             width: 100%;
             height: 600px;
             right: 52%;
-            border-radius: 0 0 50px 0;
+            border-radius: 0 200px 50px 0;
             transform: skewX(40deg);
             -webkit-transform: skewX(40deg);
             box-shadow: 0px 10px 5px rgba(100, 100, 100, .3);
@@ -257,6 +257,10 @@
             z-index: 10;
             padding-left: 10px;
             display: none;
+        }
+        
+        #tree_star:hover {
+            animation: rotate linear 1s infinite both;
         }
         
         #tree_star:after {
@@ -324,6 +328,41 @@
             transform: skewX(6deg);
             -webkit-transform: skewX(6deg);
             box-shadow: 5px 5px 5px rgba(100, 100, 100, .3);
+        }
+        
+        #boy {
+            width: 300px;
+            height: 300px;
+            margin-top: -300px;
+            margin-left: 68px;
+            position: relative;
+            overflow:hidden;
+            z-index: 11;
+        }
+        
+        #girl {
+            width: 300px;
+            height: 300px;
+            margin-top: -300px;
+            margin-left: 445px;
+            position: relative;
+            overflow:hidden;
+            z-index: 11;
+        }
+        
+        #boyimg, #girlimg{
+            display: none;
+            width: 300px;
+            height: 300px;
+        }
+        
+        #grass {
+            position: relative;
+            width: 100%;
+            height: 8vh;
+            margin-top: -8vh;
+            background: url(images/grass.svg) repeat-x;
+            z-index: 100;
         }
         
         #leaves {
@@ -487,7 +526,7 @@
             z-index: 100000;
             width: 160px;
             height: 160px;
-            right: 60px;
+            right: 30px;
             bottom: 60px;
             cursor: pointer;
             display: none;
@@ -525,7 +564,7 @@
             z-index: 100001;
             width: 160px;
             height: 160px;
-            right: 60px;
+            right: 30px;
             bottom: 60px;
             transform: scale(0) translate(0px, 0px);
             -webkit-transform: scale(0) translate(0px, 0px);
@@ -534,8 +573,8 @@
         }
         
         #sendleaf.expandbox {
-            transform: scale(1) translate(55px, 0px);
-            -webkit-transform: scale(1) translate(55px, 0px);
+            transform: scale(1) translate(25px, 0px);
+            -webkit-transform: scale(1) translate(25px, 0px);
         }
         
         #le_send {
@@ -626,7 +665,7 @@
             z-index: 100002;
             width: 160px;
             height: 160px;
-            right: 60px;
+            right: 30px;
             bottom: 60px;
             transform: scale(0) translate(0px, 0px);
             -webkit-transform: scale(0) translate(0px, 0px);
@@ -635,8 +674,8 @@
         }
         
         #sendbuttons.expandbox {
-            transform: scale(1) translate(55px, 0px);
-            -webkit-transform: scale(1) translate(55px, 0px);
+            transform: scale(1) translate(25px, 0px);
+            -webkit-transform: scale(1) translate(25px, 0px);
         }
         
         #sendbuttons .button {
@@ -745,6 +784,15 @@
                 bottom: 50px;
             }
         }
+        
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
     </style>
 </head>
 
@@ -800,12 +848,17 @@
                     <div class="tree_foot01"></div>
                     <div class="tree_foot02"></div>
                 </div>
+                <div id="boy"><img id="boyimg" src="images/boy_256.png" srcset="images/boy_256.png 1x, images/boy_512.png 2x, images/boy.svg 3x" sizes="300px 300px" alt="boy"/>
+                </div>
+                <div id="girl"><img id="girlimg" src="images/girl_256.png" srcset="images/girl_256.png 1x,images/girl_512.png 2x, images/girl.svg 3x" sizes="300px 300px" alt="girl"/>
+                </div>
             </div>
             <div id="leaves">
 
             </div>
         </div>
     </div>
+    <div id="grass"></div>
     <div id="sendbox"></div>
     <div id="sendleaf" color="01">
         <div class="leaf fullshow" id="le_send" style="" ostyle="">
@@ -861,6 +914,9 @@
             var i;
 
             fontLoad();
+            
+            $("#boyimg").load(function(){$("#boyimg").fadeIn();});
+            $("#girlimg").load(function(){$("#girlimg").fadeIn();});
 
             var docElm = document.documentElement;
             if (docElm.requestFullscreen) {
