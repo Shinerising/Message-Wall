@@ -26,9 +26,9 @@ function leaveOnClick(node) {
     }
 }
 
-function createLeaf(id, text, name, delay) {
+function createLeaf(id, text, name, color, delay) {
     'use strict';
-    var left, top, angel, color;
+    var left, top, angel;
     top = id * 250;
     if (id % 4 === 0) {
         angel = 5;
@@ -46,7 +46,6 @@ function createLeaf(id, text, name, delay) {
     while (top / 5 - 200 > $("#tree_body").height()) {
         addTree();
     }
-    color = parseInt(Math.random() * 8, 10) + 1;
     $('<div class="leaf" id="le_' + id + '" sid=' + id + ' style="' +
             'transform: scale(0.2) rotate(' + angel + 'deg) translate(' + left + 'px, ' + top + 'px);' +
             '-webkit-transform: scale(0.2) rotate(' + angel + 'deg) translate(' + left + 'px, ' + top + 'px);" ostyle="">' +

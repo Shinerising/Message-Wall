@@ -60,6 +60,9 @@ $(document).ready(function () {
             $("#send_name").focus();
             $("#send_name").css("box-shadow", "0px 0px 30px rgba(250, 100, 100, 1) inset");
         } else {
+            
+            
+            
             $("#send_text").val("");
             $("#send_name").val("");
             $("#charcount01").html("70");
