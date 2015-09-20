@@ -6,19 +6,23 @@ $(document).ready(function () {
 
     $("#back").css("opacity", 1 - Math.abs(cHour - 12) / 12);
 
-    left1 = 720 - cHour * 400 / 12;
+    left1 = 800 * (18 - cHour) / 12 - 80;
+    if(left1 > 720) left1 = 720;
     $("#sun").css("left", left1 + "px");
     $("#sun").css("top", Math.abs(cHour - 12) / 12 * 400 + "px");
-    $("#sun").css("opacity", 1 - Math.abs(cHour - 12) / 6);
+    $("#sun").css("opacity", 1.1 - Math.abs(cHour - 12) / 6);
+    $("#sun").fadeIn();
 
     cHour = cHour + 12;
     if (cHour > 24) {
         cHour -= 24;
     }
-    left1 = 720 - cHour * 400 / 12;
+    left1 = 800 * (18 - cHour) / 12 - 80;
+    if(left1 > 720) left1 = 720;
     $("#moon").css("left", left1 + "px");
     $("#moon").css("top", Math.abs(cHour - 12) / 12 * 400 + "px");
-    $("#moon").css("opacity", 1 - Math.abs(cHour - 12) / 6);
+    $("#moon").css("opacity", 1.1 - Math.abs(cHour - 12) / 6);
+    $("#moon").fadeIn();
 
     $("#sendbox").click(function () {
         if (!($(this).hasClass("expandbox")) && $(this).css("opacity") === "1") {
