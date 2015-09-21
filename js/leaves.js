@@ -88,7 +88,7 @@ $(document).ready(function () {
             setTimeout(function () {
                 $("#le_" + leavesCount).children().css("opacity", "1");
                 $("#sendbox").removeClass("sending");
-                setNotification("您的心愿已经收到！ (*´∀｀*)ゞ", 0, 0);
+                setNotification("心愿收到！(*´∀｀*)", 0, 0);
                 leavesCount = leavesCount + 1;
             }, 3000);
 
