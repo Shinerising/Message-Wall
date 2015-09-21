@@ -7,7 +7,9 @@ $(document).ready(function () {
     $("#back").css("opacity", 1 - Math.abs(cHour - 12) / 12);
 
     left1 = 800 * (18 - cHour) / 12 - 80;
-    if(left1 > 720) left1 = 720;
+    if (left1 > 720) {
+        left1 = 720;
+    }
     $("#sun").css("left", left1 + "px");
     $("#sun").css("top", Math.abs(cHour - 12) / 12 * 400 + "px");
     $("#sun").css("opacity", 1.1 - Math.abs(cHour - 12) / 6);
@@ -18,18 +20,24 @@ $(document).ready(function () {
         cHour -= 24;
     }
     left1 = 800 * (18 - cHour) / 12 - 80;
-    if(left1 > 720) left1 = 720;
+    if (left1 > 720) {
+        left1 = 720;
+    }
     $("#moon").css("left", left1 + "px");
     $("#moon").css("top", Math.abs(cHour - 12) / 12 * 400 + "px");
     $("#moon").css("opacity", 1.1 - Math.abs(cHour - 12) / 6);
     $("#moon").fadeIn();
 
     $("#sendbox").click(function () {
+        if(posting) {
+            return;
+        }
         if (!($(this).hasClass("expandbox")) && $(this).css("opacity") === "1") {
             $(this).addClass("expandbox");
             var color = parseInt(Math.random() * 8, 10) + 1;
             $("#sendleaf .shape_heart").removeClass("color01 color02 color03 color04 color05 color06 color07 color08 ").addClass("color0" + color);
             $("#sendleaf").attr("color", color);
+            $("#send_text").focus();
         }
         $("#sendleaf").css("opacity", "1");
         if (!($("#sendleaf").hasClass("expandbox"))) {
@@ -64,8 +72,17 @@ $(document).ready(function () {
             $("#send_name").focus();
             $("#send_name").css("box-shadow", "0px 0px 30px rgba(250, 100, 100, 1) inset");
         } else {
+            posting = true;
+            $("#sendbox").addClass("sending");
             
             
+            setTimeout(function(){
+                $("#le_" + leavesCount).children().css("opacity", "1");
+                posting = false;
+                $("#sendbox").removeClass("sending");
+                leavesCount = leavesCount + 1;
+            }, 3000);
+
             
             $("#send_text").val("");
             $("#send_name").val("");
@@ -77,7 +94,6 @@ $(document).ready(function () {
             $("#input_name").show();
             createLeafFrom(leavesCount, text, name, 0, $("body").scrollTop() + 865, 0, color);
             resumeLeafStyle(leavesCount);
-            leavesCount = leavesCount + 1;
             $("#sendleaf").css("opacity", "0");
             if ($("#sendbox").hasClass("expandbox")) {
                 $("#sendbox").removeClass("expandbox");
@@ -93,20 +109,16 @@ $(document).ready(function () {
 
     $("#send_name").bind("keypress", {}, function (e) {
         var code = (e.KeyCode ? e.KeyCode : e.which);
-        if (code == 13) {
+        if (code === 13) {
             $("#button_submit").click();
         }
     });
 
-    $("body").click(function () {
-        var i, style;
-        if (fullLeafId > -1) {
-            i = fullLeafId;
-            if ($(".leaf:eq(" + i + ")").hasClass("fullshow") && $(".leaf:eq(" + i + ")").css("z-index") === "1000") {
-                style = $(".leaf:eq(" + i + ")").attr("ostyle");
-                $(".leaf:eq(" + i + ")").attr("style", style);
-                $(".leaf:eq(" + i + ")").removeClass("fullshow");
-            }
-        }
+    $("#tree").click(function () {
+        closeLeave();
+    });
+    
+    $("#back").click(function () {
+        closeLeave();
     });
 });
