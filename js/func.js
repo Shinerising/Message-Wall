@@ -30,9 +30,9 @@ function leaveOnClick(node) {
     'use strict';
     var style, top, id, i;
     if ($(node).find(".button_like").is(":hover")) {
-
-        //Handle "like"
-
+        
+        $(node).find(".button_like").fadeOut();
+        
     } else {
         if ($(node).hasClass("fullshow")) {
             if (lastLeafId > -1) {
@@ -88,9 +88,8 @@ function createLeaf(id, text, name, color, delay) {
             '<div class="leaf_info"><div class="leaf_text">' + text +
             '</div><div class="leaf_name">' + name +
             '</div></div><div class="button_like"></div></div></div>')
-        .click(function (evt) {
+        .click(function () {
             leaveOnClick(this);
-            evt.preventDefault();
         })
         .hide()
         .delay(delay)
@@ -109,9 +108,8 @@ function createLeafFrom(id, text, name, left, top, angel, color) {
             '<div class="leaf_info"><div class="leaf_text">' + text +
             '</div><div class="leaf_name">' + name +
             '</div></div><div class="button_like"></div></div></div>')
-        .on('click', 'a', function (evt) {
+        .click(function () {
             leaveOnClick(this);
-            evt.preventDefault();
         })
         .appendTo($("#leaves"));
 }
