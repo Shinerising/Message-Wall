@@ -1,3 +1,13 @@
+/*global $, jQuery, alert,
+    lastLeafId:true,
+    fullLeafId:true,
+    leavesCount:true,
+    createLeafFrom,
+    resumeLeafStyle,
+    closeLeave,
+    setNotification
+*/
+
 $(document).ready(function () {
     'use strict';
 
@@ -29,7 +39,7 @@ $(document).ready(function () {
     $("#moon").fadeIn();
 
     $("#sendbox").click(function () {
-        if(posting) {
+        if ($(this).hasClass("sending")) {
             return;
         }
         if (!($(this).hasClass("expandbox")) && $(this).css("opacity") === "1") {
@@ -72,14 +82,13 @@ $(document).ready(function () {
             $("#send_name").focus();
             $("#send_name").css("box-shadow", "0px 0px 30px rgba(250, 100, 100, 1) inset");
         } else {
-            posting = true;
             $("#sendbox").addClass("sending");
             
             
-            setTimeout(function(){
+            setTimeout(function () {
                 $("#le_" + leavesCount).children().css("opacity", "1");
-                posting = false;
                 $("#sendbox").removeClass("sending");
+                setNotification("心愿已经收到！ (*´∀｀*)ゞ", 0, 0);
                 leavesCount = leavesCount + 1;
             }, 3000);
 
@@ -108,7 +117,7 @@ $(document).ready(function () {
     });
 
     $("#send_name").bind("keypress", {}, function (e) {
-        var code = (e.KeyCode ? e.KeyCode : e.which);
+        var code = e.KeyCode || e.which;
         if (code === 13) {
             $("#button_submit").click();
         }

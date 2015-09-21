@@ -1,7 +1,39 @@
+/*global $, jQuery, alert,
+    lastLeafId:true,
+    fullLeafId:true
+*/
+
+function addTree() {
+    'use strict';
+    $('<div class="tree_part"><div class="tree_part01shadow"></div><div class="tree_part02shadow"></div><div class="tree_part01"></div><div class="tree_part02"></div></div>').appendTo($("#tree_body"));
+}
+
+function closeLeave() {
+    'use strict';
+    var i, style;
+    if (lastLeafId > -1) {
+        $("#le_" + lastLeafId).css("z-index", 1);
+    }
+    if (fullLeafId > -1) {
+        i = fullLeafId;
+        if ($("#le_" + i).hasClass("fullshow")) {
+            style = $("#le_" + i).attr("ostyle");
+            $("#le_" + i).attr("style", style);
+            $("#le_" + i).css("z-index", 999);
+            $("#le_" + i).removeClass("fullshow");
+            lastLeafId = fullLeafId;
+        }
+    }
+}
+
 function leaveOnClick(node) {
     'use strict';
     var style, top, id, i;
-    if ($(node).find(".button_like").is(":hover")) {} else {
+    if ($(node).find(".button_like").is(":hover")) {
+
+        //Handle "like"
+
+    } else {
         if ($(node).hasClass("fullshow")) {
             if (lastLeafId > -1) {
                 $("#le_" + lastLeafId).css("z-index", 1);
@@ -23,23 +55,6 @@ function leaveOnClick(node) {
             $(node).addClass("fullshow");
             id = $(node).attr("sid");
             fullLeafId = id;
-        }
-    }
-}
-
-function closeLeave() {
-    var i, style;
-    if (lastLeafId > -1) {
-        $("#le_" + lastLeafId).css("z-index", 1);
-    }
-    if (fullLeafId > -1) {
-        i = fullLeafId;
-        if ($("#le_" + i).hasClass("fullshow")) {
-            style = $("#le_" + i).attr("ostyle");
-            $("#le_" + i).attr("style", style);
-            $("#le_" + i).css("z-index", 999);
-            $("#le_" + i).removeClass("fullshow");
-            lastLeafId = fullLeafId;
         }
     }
 }
@@ -150,11 +165,6 @@ function getLeafStyle(id, ab) {
     return style;
 }
 
-function addTree() {
-    'use strict';
-    $('<div class="tree_part"><div class="tree_part01shadow"></div><div class="tree_part02shadow"></div><div class="tree_part01"></div><div class="tree_part02"></div></div>').appendTo($("#tree_body"));
-}
-
 function textChange() {
     'use strict';
     if ($('#send_text').val() !== "") {
@@ -164,7 +174,7 @@ function textChange() {
         $("#charcount01").html(70 - str.length);
         if (str.length <= 70) {
             $("#charcount01").css("color", "#888");
-            $("#send_text").css("box-shadow", "0px 0px 30px rgba(100, 100, 100, 1) inset")
+            $("#send_text").css("box-shadow", "0px 0px 30px rgba(100, 100, 100, 1) inset");
         } else {
             $("#charcount01").css("color", "#F88");
         }
@@ -193,4 +203,51 @@ function nameChange() {
         $("#charcount02").html("8");
         $("#charcount02").css("opacity", "0");
     }
+}
+
+function setNotification(message, t, c) {
+    'use strict';
+    var type, color, ele, newele;
+    switch (t) {
+    case 0:
+        type = "icon_happy";
+        break;
+    case 1:
+        type = "icon_unhappy";
+        break;
+    case 2:
+        type = "icon_exclamation-c";
+        break;
+    case 3:
+        type = "icon_stop";
+        break;
+    case 4:
+        type = "icon_bug";
+        break;
+    default:
+        type = "icon_exclamation-c";
+        break;
+    }
+    switch (c) {
+    case 0:
+        color = "greenback";
+        break;
+    case 1:
+        color = "redback";
+        break;
+    case 2:
+        color = "silverback";
+        break;
+    default:
+        color = "silverback";
+        break;
+    }
+    $("#notiarea").removeClass("greenback redback silverback");
+    $("#notiimage").removeClass("icon_happy icon_unhappy icon_exclamation-c icon_stop icon_bug");
+    $("#notiarea").addClass(color);
+    $("#notiimage").addClass(type);
+    $("#notimessage").html(message);
+    ele = document.getElementById("notification");
+    newele = ele.cloneNode(true);
+    ele.parentNode.replaceChild(newele, ele);
 }
