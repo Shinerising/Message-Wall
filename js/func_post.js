@@ -1,12 +1,27 @@
 /*global $, jQuery, alert,
-    lastLeafId:true,
-    fullLeafId:true,
     leavesCount:true,
     createLeaf,
     setNotification,
     setLeafUID,
     removeLeaf
 */
+/*Global variables & functions:
+    leavesCount: the count of the leaves than have been drawn on the page
+        used to set the leaf id and layout
+        add 1 when new leaf is drawn
+        minus 1 when leaf is removed
+    createLeaf: Add one new leaf with several options on the page
+        WATCH OUT, this function has many parameters
+    setNotification: Call the notification bar to send the message to user
+        easy to use
+    setLeafUID: Set the unique ID on the leaf which is created just now,
+        the unique ID must be returned by the server
+    removeLeaf: Remove one leaf,
+        the leaf must be the one that cannot be created normally,
+        this could happen when the network is bad
+*/
+
+//Entrance of the program
 function init() {
     'use strict';
     $("#tree_star").fadeIn();
@@ -16,10 +31,13 @@ function init() {
     for (i = 0; i < 20; i = i + 1) {
         color = parseInt(Math.random() * 8, 10) + 1;
         //Parameters: createLeaf(id, uid, message, name, color[1~8], display delay[ms], is liked[1:true;0:false]);
-        createLeaf(i, i, "I don't care who you are,<br>where you're from,<br>don't care what you did,<br>as long as you love me.", "Backstreet Boys", color, i * 100, 0);
+        createLeaf(leavesCount, leavesCount, "I don't care who you are,<br>where you're from,<br>don't care what you did,<br>as long as you love me.", "Backstreet Boys", color, i * 100, 0);
+        leavesCount += 1;
     }
 }
 
+//Post the like clicked event to the server
+//Parameters: serPostLike(uid[unique ID])
 function serverPostLike(uid) {
     'use strict';
     //Add ajax request for like count
@@ -27,6 +45,20 @@ function serverPostLike(uid) {
     //No need to handle success
 }
 
+//Add new leaves when the screen is scrolled to the end
+//Parameters: serverPostAddLeaves(num[number of new request leaves])
+function serverPostAddLeaves(num) {
+    'use strict';
+    var i, color;
+    for (i = 0; i < num; i = i + 1) {
+        color = parseInt(Math.random() * 8, 10) + 1;
+        //Parameters: createLeaf(id, uid, message, name, color[1~8], display delay[ms], is liked[1:true;0:false]);
+        createLeaf(leavesCount, leavesCount, "I don't care who you are,<br>where you're from,<br>don't care what you did,<br>as long as you love me.", "Backstreet Boys", color, i * 100, 0);
+        leavesCount += 1;
+    }
+}
+
+//Post the new leaf to server the user create just now
 //Parameters: serverPostLeaf(uid, message, name, color[1~8]);
 function serverPostNewLeaf(text, name, color) {
     'use strict';

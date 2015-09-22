@@ -48,7 +48,7 @@ function leaveOnClick(node) {
         } else {
             closeLeave();
             style = $(node).attr("style");
-            top = $("body").scrollTop() + 0.1 * $(window).height();
+            top = $(window).scrollTop() + 0.1 * $(window).height();
             $(node).attr("ostyle", style);
             style = "transform: translate(0px, " + top + "px);-webkit-transform: translate(0px, " + top + "px);";
             $(node).attr("style", style);
@@ -61,18 +61,20 @@ function leaveOnClick(node) {
 }
 
 function removeLeaf(id) {
-    if(fullLeafId === id) {
+    'use strict';
+    if (fullLeafId === id) {
         closeLeave();
         fullLeafId = -1;
         lastLeafId = -1;
     }
-    if(lastLeafId === id) {
+    if (lastLeafId === id) {
         lastLeafId = -1;
     }
     $("#le_" + id).remove();
 }
 
 function setLeafUID(id, uid) {
+    'use strict';
     $("#le_" + id).attr("uid", id);
 }
 

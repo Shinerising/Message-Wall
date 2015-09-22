@@ -6,7 +6,8 @@
     resumeLeafStyle,
     closeLeave,
     setNotification,
-    serverPostNewLeaf
+    serverPostNewLeaf,
+    serverPostAddLeaves
 */
 
 $(document).ready(function () {
@@ -84,10 +85,10 @@ $(document).ready(function () {
             $("#send_name").css("box-shadow", "0px 0px 30px rgba(250, 100, 100, 1) inset");
         } else {
             $("#sendbox").addClass("sending");
-            
+
             text = text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/(?:\r\n|\r|\n)/g, '<br />');
             name = name.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-            
+
             serverPostNewLeaf(text, name, color);
 
             createLeafFrom(leavesCount, text, name, 0, $("body").scrollTop() + 865, 0, color);
@@ -118,5 +119,11 @@ $(document).ready(function () {
 
     $("#back").click(function () {
         closeLeave();
+    });
+
+    $(window).scroll(function () {
+        if ($(this).scrollTop() + $(this).height() === $("body").height()) {
+            serverPostAddLeaves(10);
+        }
     });
 });
