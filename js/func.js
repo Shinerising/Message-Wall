@@ -30,9 +30,9 @@ function leaveOnClick(node) {
     'use strict';
     var style, top, id, i;
     if ($(node).find(".button_like").is(":hover")) {
-        
+
         $(node).find(".button_like").fadeOut();
-        
+
     } else {
         if ($(node).hasClass("fullshow")) {
             if (lastLeafId > -1) {
@@ -240,11 +240,15 @@ function setNotification(message, t, c) {
         color = "silverback";
         break;
     }
-    $("#notiarea").removeClass("greenback redback silverback");
-    $("#notiimage").removeClass("icon_happy icon_unhappy icon_exclamation-c icon_stop icon_bug");
-    $("#notiarea").addClass(color);
-    $("#notiimage").addClass(type);
-    $("#notimessage").html(message);
+    if (document.getElementById("notiarea").hasAttribute("class")) {
+        document.getElementById("notiarea").removeAttribute("class");
+    }
+    if (document.getElementById("notiimage").hasAttribute("class")) {
+        document.getElementById("notiimage").removeAttribute("class");
+    }
+    document.getElementById("notiarea").setAttribute("class", color);
+    document.getElementById("notiimage").setAttribute("class", type);
+    document.getElementById("notimessage").innerHTML = message;
     ele = document.getElementById("notification");
     newele = ele.cloneNode(true);
     ele.parentNode.replaceChild(newele, ele);
