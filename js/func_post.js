@@ -3,7 +3,8 @@
     createLeaf,
     setNotification,
     setLeafUID,
-    removeLeaf
+    removeLeaf,
+    newComer
 */
 /*Global variables & functions:
     leavesCount: the count of the leaves than have been drawn on the page
@@ -19,6 +20,7 @@
     removeLeaf: Remove one leaf,
         the leaf must be the one that cannot be created normally,
         this could happen when the network is bad
+    newComer: Show some welcome words to new user
 */
 
 //Entrance of the program
@@ -27,12 +29,19 @@ function init() {
     $("#tree_star").fadeIn();
     $("#sendbox").fadeIn();
     $("#notification").show();
-    var i, color;
+    var i, color, firstCome;
     for (i = 0; i < 20; i = i + 1) {
         color = parseInt(Math.random() * 8, 10) + 1;
         //Parameters: createLeaf(id, uid, message, name, color[1~8], display delay[ms], is liked[1:true;0:false]);
         createLeaf(leavesCount, leavesCount, "I don't care who you are,<br>where you're from,<br>don't care what you did,<br>as long as you love me.", "Backstreet Boys", color, i * 100, 0);
         leavesCount += 1;
+    }
+    //Check if the user is firstly open the page
+    firstCome = true;
+    if (firstCome) {
+        newComer(0);
+    } else {
+        setNotification("欢迎回来！(*´∀｀*)", 0, 0);
     }
 }
 

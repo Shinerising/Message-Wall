@@ -277,3 +277,41 @@ function setNotification(message, t, c) {
     newele = ele.cloneNode(true);
     ele.parentNode.replaceChild(newele, ele);
 }
+
+function newComer(i) {
+    'use strict';
+    switch (i) {
+    case 0:
+        setNotification("欢迎打开爱情树！", 0, 0);
+        break;
+    case 1:
+        setNotification("你可以在这里倾诉", 2, 2);
+        break;
+    case 2:
+        setNotification("也可以在这里聆听", 4, 2);
+        break;
+    case 3:
+        setNotification("每一片小小的叶子", 2, 2);
+        break;
+    case 4:
+        setNotification("都承载着一片真心", 4, 2);
+        break;
+    case 5:
+        setNotification("但是请注意", 3, 1);
+        break;
+    case 6:
+        setNotification("恶作剧是不行的哦", 1, 1);
+        break;
+    case 7:
+        setNotification("那么", 2, 2);
+        break;
+    case 8:
+        setNotification("开始留下回忆吧！", 0, 0);
+        break;
+    case 9:
+        return;
+    }
+    setTimeout(function () {
+        newComer(i + 1);
+    }, 3000);
+}
