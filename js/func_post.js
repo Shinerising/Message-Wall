@@ -51,6 +51,10 @@ function serverPostAddLeaves(num) {
     'use strict';
     var i, color;
     for (i = 0; i < num; i = i + 1) {
+        //Set the largest number of the leaves
+        if (leavesCount > 100) {
+            break;
+        }
         color = parseInt(Math.random() * 8, 10) + 1;
         //Parameters: createLeaf(id, uid, message, name, color[1~8], display delay[ms], is liked[1:true;0:false]);
         createLeaf(leavesCount, leavesCount, "I don't care who you are,<br>where you're from,<br>don't care what you did,<br>as long as you love me.", "Backstreet Boys", color, i * 100, 0);
@@ -79,7 +83,7 @@ function serverPostNewLeaf(text, name, color) {
         $("#input_text").css("opacity", "1");
         $("#input_name").show();
     */
-    
+
     /*If fail
         removeLeaf(leavesCount);
         $("#sendbox").removeClass("sending");
@@ -94,7 +98,7 @@ function serverPostNewLeaf(text, name, color) {
         setNotification("心愿收到！(*´∀｀*)", 0, 0);
         setLeafUID(leavesCount, leavesCount);
         leavesCount += 1;
-        
+
         $("#send_text").val("");
         $("#send_name").val("");
         $("#charcount01").html("70");
