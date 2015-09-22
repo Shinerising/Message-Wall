@@ -5,7 +5,8 @@
     createLeafFrom,
     resumeLeafStyle,
     closeLeave,
-    setNotification
+    setNotification,
+    serverPostNewLeaf
 */
 
 $(document).ready(function () {
@@ -83,24 +84,9 @@ $(document).ready(function () {
             $("#send_name").css("box-shadow", "0px 0px 30px rgba(250, 100, 100, 1) inset");
         } else {
             $("#sendbox").addClass("sending");
-            
-            
-            setTimeout(function () {
-                $("#le_" + leavesCount).children().css("opacity", "1");
-                $("#sendbox").removeClass("sending");
-                setNotification("心愿收到！(*´∀｀*)", 0, 0);
-                leavesCount = leavesCount + 1;
-            }, 3000);
 
-            
-            $("#send_text").val("");
-            $("#send_name").val("");
-            $("#charcount01").html("70");
-            $("#charcount02").html("8");
-            $("#charcount01").css("opacity", "0");
-            $("#charcount02").css("opacity", "0");
-            $("#input_text").css("opacity", "1");
-            $("#input_name").show();
+            serverPostNewLeaf(text, name, color);
+
             createLeafFrom(leavesCount, text, name, 0, $("body").scrollTop() + 865, 0, color);
             resumeLeafStyle(leavesCount);
             $("#sendleaf").css("opacity", "0");
@@ -126,7 +112,7 @@ $(document).ready(function () {
     $("#tree").click(function () {
         closeLeave();
     });
-    
+
     $("#back").click(function () {
         closeLeave();
     });

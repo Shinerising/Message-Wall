@@ -3,7 +3,7 @@
 Name:                   Message Wall
 Author:                 Apollo Wayne & ZYY
 Created Date:           2015.9.17
-Last Modified Date:     2015.9.21
+Last Modified Date:     2015.9.22
 Used:
     JavaScript library: jQuery https://jquery.com
     Iconic Font:        FontAwesome http://fontawesome.io
@@ -16,9 +16,9 @@ Thanks to the individuals and groups who provided their helps!
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="user-scalable=no">
-    <title itemprop="name">表♡白♡墙</title>
+    <title itemprop="name">爱♡情♡树</title>
     <meta name="Author" content="Apollo Wayne & ZYY">
-    <meta property="og:title" content="表♡白♡墙" />
+    <meta property="og:title" content="爱♡情♡树" />
     <meta property="og:description" name="Description" content="A message wall where people could post their wishes and hopes about love, life and future.">
     <meta property="og:url" content="http://Shinerising.github.io/">
     <meta property="og:image" content="images/cover.png">
@@ -48,6 +48,7 @@ Thanks to the individuals and groups who provided their helps!
 
     <script src="js/jquery-2.1.3.min.js"></script>
     <script src="js/func.js"></script>
+    <script src="js/func_post.js"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -997,15 +998,19 @@ Thanks to the individuals and groups who provided their helps!
         @keyframes drop {
             0% {
                 transform: translateY(0);
+                opacity: 0;
             }
             20% {
                 transform: translateY(250px);
+                opacity: 1;
             }
             80% {
                 transform: translateY(250px);
+                opacity: 1;
             }
             100% {
                 transform: translateY(0);
+                opacity: 0;
             }
         }
         
@@ -1057,15 +1062,21 @@ Thanks to the individuals and groups who provided their helps!
         @-webkit-keyframes drop {
             0% {
                 -webkit-transform: translateY(0);
+                opacity: 0;
+                display: block;
             }
             20% {
                 -webkit-transform: translateY(250px);
+                opacity: 1;
             }
             80% {
                 -webkit-transform: translateY(250px);
+                opacity: 1;
             }
             100% {
                 -webkit-transform: translateY(0);
+                opacity: 0;
+                display: none;
             }
         }
         
@@ -1180,17 +1191,6 @@ Thanks to the individuals and groups who provided their helps!
 
     <script src="js/leaves.js"></script>
     <script>
-        function init() {
-            $("#tree_star").fadeIn();
-            $("#sendbox").fadeIn();
-            $("#notification").show();
-            for (i = 0; i < 20; i = i + 1) {
-                var color;
-                color = parseInt(Math.random() * 8, 10) + 1;
-                createLeaf(i, "I don't care who you are,<br>where you're from,<br>don't care what you did,<br>as long as you love me.", "Backstreet Boys", color, i * 100);
-            }
-        }
-
         function fontLoad() {
             if ($("#test").width() > 140) {
                 init();

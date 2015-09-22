@@ -1,6 +1,7 @@
 /*global $, jQuery, alert,
     lastLeafId:true,
-    fullLeafId:true
+    fullLeafId:true,
+    serverPostLike
 */
 
 function addTree() {
@@ -30,9 +31,9 @@ function leaveOnClick(node) {
     'use strict';
     var style, top, id, i;
     if ($(node).find(".button_like").is(":hover")) {
-
+        id = $(node).attr("sid");
+        serverPostLike(id);
         $(node).find(".button_like").fadeOut();
-
     } else {
         if ($(node).hasClass("fullshow")) {
             if (lastLeafId > -1) {
@@ -59,9 +60,17 @@ function leaveOnClick(node) {
     }
 }
 
-function createLeaf(id, text, name, color, delay) {
+function removeLeaf(id) {
+    $("#le_" + id).remove();
+}
+
+function setLeafUID(id, uid) {
+    $("#le_" + id).attr("uid", id);
+}
+
+function createLeaf(id, uid, text, name, color, delay, islike) {
     'use strict';
-    var left, top, angel;
+    var left, top, angel, likestyle;
     top = id * 250;
     if (id % 4 === 0) {
         angel = 5;
@@ -76,10 +85,15 @@ function createLeaf(id, text, name, color, delay) {
         angel = -10;
         left = 1400 + Math.tan(angel / 180 * Math.PI) * top;
     }
+    if (islike === 1) {
+        likestyle = "display:none;";
+    } else {
+        likestyle = "display:block;";
+    }
     while (top / 5 - 200 > $("#tree_body").height()) {
         addTree();
     }
-    $('<div class="leaf noselect" id="le_' + id + '" sid=' + id + ' style="' +
+    $('<div class="leaf noselect" id="le_' + id + '" sid=' + id + ' uid=' + uid + ' style="' +
             'transform: scale(0.2) rotate(' + angel + 'deg) translate(' + left + 'px, ' + top + 'px);' +
             '-webkit-transform: scale(0.2) rotate(' + angel + 'deg) translate(' + left + 'px, ' + top + 'px);" ostyle="">' +
             '<div class="leaf_main"><div class="leaf_back">' +
@@ -87,7 +101,7 @@ function createLeaf(id, text, name, color, delay) {
             '<div class="shape_heart shape_text color0' + color + '"></div></div>' +
             '<div class="leaf_info"><div class="leaf_text">' + text +
             '</div><div class="leaf_name">' + name +
-            '</div></div><div class="button_like"></div></div></div>')
+            '</div></div><div class="button_like" style="' + likestyle + '"></div></div></div>')
         .click(function () {
             leaveOnClick(this);
         })
@@ -99,7 +113,7 @@ function createLeaf(id, text, name, color, delay) {
 
 function createLeafFrom(id, text, name, left, top, angel, color) {
     'use strict';
-    $('<div class="leaf noselect" id="le_' + id + '" sid=' + id + ' style="' +
+    $('<div class="leaf noselect" id="le_' + id + '" sid=' + id + ' uid=' + id + ' style="' +
             'transform:rotate(' + angel + 'deg) translate(' + left + 'px, ' + top + 'px);' +
             '-webkit-transform:rotate(' + angel + 'deg) translate(' + left + 'px, ' + top + 'px);" ostyle="">' +
             '<div class="leaf_main"><div class="leaf_back">' +
