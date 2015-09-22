@@ -313,5 +313,5 @@ function newComer(i) {
     }
     setTimeout(function () {
         newComer(i + 1);
-    }, 3000);
+    }, 2500);
 }
