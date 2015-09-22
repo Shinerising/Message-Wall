@@ -61,6 +61,14 @@ function leaveOnClick(node) {
 }
 
 function removeLeaf(id) {
+    if(fullLeafId === id) {
+        closeLeave();
+        fullLeafId = -1;
+        lastLeafId = -1;
+    }
+    if(lastLeafId === id) {
+        lastLeafId = -1;
+    }
     $("#le_" + id).remove();
 }
 

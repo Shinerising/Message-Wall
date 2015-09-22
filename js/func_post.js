@@ -60,7 +60,7 @@ function serverPostNewLeaf(text, name, color) {
         $("#le_" + leavesCount).children().css("opacity", "1");
         $("#sendbox").removeClass("sending");
         setNotification("心愿收到！(*´∀｀*)", 0, 0);
-        setLeafUID(leavesCount);
+        setLeafUID(leavesCount, leavesCount);
         leavesCount += 1;
         
         $("#send_text").val("");
