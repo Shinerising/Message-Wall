@@ -26,7 +26,7 @@
 //Entrance of the program
 function init() {
     'use strict';
-    $("#tree_star").fadeIn();
+    $("#tree_star").css("opacity", 1);
     $("#sendbox").fadeIn();
     $("#notification").show();
     var i, color, firstCome;
@@ -37,7 +37,7 @@ function init() {
         leavesCount += 1;
     }
     //Check if the user is firstly open the page
-    firstCome = true;
+    firstCome = false;
     if (firstCome) {
         newComer(0);
     } else {

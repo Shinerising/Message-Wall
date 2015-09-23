@@ -18,12 +18,12 @@ $(document).ready(function () {
 
     $("#back").css("opacity", 1 - Math.abs(cHour - 12) / 12);
 
-    left1 = 800 * (18 - cHour) / 12 - 80;
-    if (left1 > 720) {
-        left1 = 720;
+    left1 = 80 * (18 - cHour) / 12 - 10;
+    if (left1 > 70) {
+        left1 = 70;
     }
-    $("#sun").css("left", left1 + "px");
-    $("#sun").css("top", Math.abs(cHour - 12) / 12 * 400 + "px");
+    $("#sun").css("left", left1 + "vw");
+    $("#sun").css("top", Math.abs(cHour - 12) / 12 * 30 + "vh");
     $("#sun").css("opacity", 1.1 - Math.abs(cHour - 12) / 6);
     $("#sun").fadeIn();
 
@@ -31,12 +31,12 @@ $(document).ready(function () {
     if (cHour > 24) {
         cHour -= 24;
     }
-    left1 = 800 * (18 - cHour) / 12 - 80;
-    if (left1 > 720) {
-        left1 = 720;
+    left1 = 80 * (18 - cHour) / 12 - 10;
+    if (left1 > 70) {
+        left1 = 70;
     }
-    $("#moon").css("left", left1 + "px");
-    $("#moon").css("top", Math.abs(cHour - 12) / 12 * 400 + "px");
+    $("#moon").css("left", left1 + "vw");
+    $("#moon").css("top", Math.abs(cHour - 12) / 12 * 30 + "vh");
     $("#moon").css("opacity", 1.1 - Math.abs(cHour - 12) / 6);
     $("#moon").fadeIn();
 
@@ -79,21 +79,21 @@ $(document).ready(function () {
         name = $("#send_name").val();
         if (text.length === 0 || text.length > 70) {
             $("#send_text").focus();
-            $("#send_text").css("box-shadow", "0px 0px 30px rgba(250, 100, 100, 1) inset");
+            $("#send_text").css("box-shadow", "0 0 3vw rgba(250, 100, 100, 1) inset");
         } else if (name.length === 0 || name.length > 8) {
             $("#send_name").focus();
-            $("#send_name").css("box-shadow", "0px 0px 30px rgba(250, 100, 100, 1) inset");
+            $("#send_name").css("box-shadow", "0 0 3vw rgba(250, 100, 100, 1) inset");
         } else {
             $("#sendbox").addClass("sending");
 
             text = text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/(?:\r\n|\r|\n)/g, '<br />');
             name = name.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-            
-            createLeafFrom(leavesCount, text, name, 0, $("body").scrollTop() + 865, 0, color);
+
+            createLeafFrom(leavesCount, text, name, 0, ($("body").scrollTop() + $(window).height() * 0.96) / $(window).width() * 100 - 80, 0, color);
             resumeLeafStyle(leavesCount);
-            
+
             serverPostNewLeaf(text, name, color);
-            
+
             $("#sendleaf").css("opacity", "0");
             if ($("#sendbox").hasClass("expandbox")) {
                 $("#sendbox").removeClass("expandbox");
@@ -124,7 +124,9 @@ $(document).ready(function () {
 
     $(window).scroll(function () {
         if ($(this).scrollTop() + $(this).height() > $("body").height() - 42) {
-            serverPostAddLeaves(10);
+            setTimeout(function () {
+                serverPostAddLeaves(10);
+            }, 1000);
         }
     });
 });
