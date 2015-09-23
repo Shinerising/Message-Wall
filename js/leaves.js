@@ -88,11 +88,12 @@ $(document).ready(function () {
 
             text = text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/(?:\r\n|\r|\n)/g, '<br />');
             name = name.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-
-            serverPostNewLeaf(text, name, color);
-
+            
             createLeafFrom(leavesCount, text, name, 0, $("body").scrollTop() + 865, 0, color);
             resumeLeafStyle(leavesCount);
+            
+            serverPostNewLeaf(text, name, color);
+            
             $("#sendleaf").css("opacity", "0");
             if ($("#sendbox").hasClass("expandbox")) {
                 $("#sendbox").removeClass("expandbox");

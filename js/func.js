@@ -33,7 +33,10 @@ function leaveOnClick(node) {
     if ($(node).find(".button_like").is(":hover")) {
         id = $(node).attr("sid");
         serverPostLike(id);
-        $(node).find(".button_like").fadeOut();
+        $(node).find(".button_like")
+            .css("animation", "buttonexpand .6s")
+            .css("-webkit-animation", "buttonexpand .6s")
+            .fadeOut();
     } else {
         if ($(node).hasClass("fullshow")) {
             if (lastLeafId > -1) {

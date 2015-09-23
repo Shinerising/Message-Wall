@@ -3,7 +3,7 @@
 Name:                   Message Wall
 Author:                 Apollo Wayne & ZYY
 Created Date:           2015.9.17
-Last Modified Date:     2015.9.22
+Last Modified Date:     2015.9.23
 Used:
     JavaScript library: jQuery https://jquery.com
     Iconic Font:        FontAwesome http://fontawesome.io
@@ -163,6 +163,7 @@ Thanks to the individuals and groups who provided their helps!
         #test {
             position: fixed;
             opacity: 0;
+            bottom: -160px;
         }
         
         #test:after {
@@ -1036,6 +1037,15 @@ Thanks to the individuals and groups who provided their helps!
             }
         }
         
+        @keyframes buttonexpand {
+            from {
+                transform: scale(1);
+            }
+            to   {
+                transform: scale(2);
+            }
+        }
+        
         @-webkit-keyframes quiver {
             0% {
                 -webkit-transform: rotate(0deg);
@@ -1108,6 +1118,15 @@ Thanks to the individuals and groups who provided their helps!
             }
             to {
                 -webkit-transform: rotate(360deg);
+            }
+        }
+        
+        @-webkit-keyframes buttonexpand {
+            from {
+                transform: scale(1);
+            }
+            to   {
+                transform: scale(2);
             }
         }
     </style>
