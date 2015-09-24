@@ -27,39 +27,31 @@ function closeLeave() {
     }
 }
 
-function leaveOnClick(node) {
+function leaveOnClick(ele) {
     'use strict';
-    var style, top, id, i;
-    if ($(node).find(".button_like").is(":hover")) {
-        id = $(node).attr("sid");
-        serverPostLike(id);
-        $(node).find(".button_like")
-            .css("animation", "buttonexpand .6s")
-            .css("-webkit-animation", "buttonexpand .6s")
-            .fadeOut();
-    } else {
-        if ($(node).hasClass("fullshow")) {
-            if (lastLeafId > -1) {
-                $("#le_" + lastLeafId).css("z-index", 1);
-            }
-            style = $(node).attr("ostyle");
-            $(node).attr("style", style);
-            $(node).css("z-index", 999);
-            $(node).removeClass("fullshow");
-            id = $(node).attr("sid");
-            lastLeafId = id;
-        } else {
-            closeLeave();
-            style = $(node).attr("style");
-            top = ($(window).scrollTop() + 0.1 * $(window).height()) / $(window).width() * 100;
-            $(node).attr("ostyle", style);
-            style = "transform: translate(0, " + top + "vw);-webkit-transform: translate(0, " + top + "vw);";
-            $(node).attr("style", style);
-            $(node).css("z-index", 1000);
-            $(node).addClass("fullshow");
-            id = $(node).attr("sid");
-            fullLeafId = id;
+    var style, top, id, i, node;
+    node = $(ele).parent().parent();
+    if ($(node).hasClass("fullshow")) {
+        if (lastLeafId > -1) {
+            $("#le_" + lastLeafId).css("z-index", 1);
         }
+        style = $(node).attr("ostyle");
+        $(node).attr("style", style);
+        $(node).css("z-index", 999);
+        $(node).removeClass("fullshow");
+        id = $(node).attr("sid");
+        lastLeafId = id;
+    } else {
+        closeLeave();
+        style = $(node).attr("style");
+        top = ($(window).scrollTop() + 0.1 * $(window).height());
+        $(node).attr("ostyle", style);
+        style = "transform: translate(0, " + top + "px);-webkit-transform: translate(0, " + top + "px);";
+        $(node).attr("style", style);
+        $(node).css("z-index", 1000);
+        $(node).addClass("fullshow");
+        id = $(node).attr("sid");
+        fullLeafId = id;
     }
 }
 
@@ -84,40 +76,37 @@ function setLeafUID(id, uid) {
 function createLeaf(id, uid, text, name, color, delay, islike) {
     'use strict';
     var left, top, angel, likestyle;
-    top = id * 25;
+    top = id * 250;
     if (id % 4 === 0) {
         angel = 5;
-        left = -50 + Math.tan(angel / 180 * Math.PI) * top;
+        left = -500 + Math.tan(angel / 180 * Math.PI) * top;
     } else if (id % 4 === 1) {
         angel = -5;
-        left = 50 + Math.tan(angel / 180 * Math.PI) * top;
+        left = 500 + Math.tan(angel / 180 * Math.PI) * top;
     } else if (id % 4 === 2) {
         angel = 10;
-        left = -140 + Math.tan(angel / 180 * Math.PI) * top;
+        left = -1400 + Math.tan(angel / 180 * Math.PI) * top;
     } else if (id % 4 === 3) {
         angel = -10;
-        left = 140 + Math.tan(angel / 180 * Math.PI) * top;
+        left = 1400 + Math.tan(angel / 180 * Math.PI) * top;
     }
     if (islike === 1) {
         likestyle = "display:none;";
     } else {
         likestyle = "display:block;";
     }
-    while ((top - 100) / 500 * $(window).width() > $("#tree_body").height()) {
+    while (top / 5 - 200 > $("#tree_body").height()) {
         addTree();
     }
     $('<div class="leaf noselect" id="le_' + id + '" sid=' + id + ' uid=' + uid + ' style="' +
-            'transform: scale(0.2) rotate(' + angel + 'deg) translate(' + left + 'vw, ' + top + 'vw);' +
-            '-webkit-transform: scale(0.2) rotate(' + angel + 'deg) translate(' + left + 'vw, ' + top + 'vw);" ostyle="">' +
-            '<div class="leaf_main"><div class="leaf_back">' +
+            'transform: scale(0.2) rotate(' + angel + 'deg) translate(' + left + 'px, ' + top + 'px);' +
+            ' -webkit-transform: scale(0.2) rotate(' + angel + 'deg) translate(' + left + 'px, ' + top + 'px);" ostyle="">' +
+            '<div class="leaf_main"><div class="leaf_back" onclick="leaveOnClick(this)">' +
             '<div class="shape_back shape_text"></div>' +
             '<div class="shape_heart shape_text color0' + color + '"></div></div>' +
-            '<div class="leaf_info"><div class="leaf_text">' + text +
+            '<div class="leaf_info" onclick="leaveOnClick(this)"><div class="leaf_text">' + text +
             '</div><div class="leaf_name">' + name +
-            '</div></div><div class="button_like" style="' + likestyle + '"></div></div></div>')
-        .click(function () {
-            leaveOnClick(this);
-        })
+            '</div></div><div class="button_like" style="' + likestyle + '" onclick="likeOnClick(this)"></div></div></div>')
         .hide()
         .delay(delay)
         .fadeIn()
@@ -126,15 +115,15 @@ function createLeaf(id, uid, text, name, color, delay, islike) {
 
 function createLeafFrom(id, text, name, left, top, angel, color) {
     'use strict';
-    $('<div class="leaf noselect" id="le_' + id + '" sid=' + id + ' uid=' + id + ' style="' +
-            'transform:rotate(' + angel + 'deg) translate(' + left + 'vw, ' + top + 'vw);' +
-            '-webkit-transform:rotate(' + angel + 'deg) translate(' + left + 'vw, ' + top + 'vw);" ostyle="">' +
-            '<div class="leaf_main"><div class="leaf_back">' +
+    $('<div class="leaf noselect" id="le_' + id + '" sid=' + id + ' uid=-1 style="' +
+            'transform:rotate(' + angel + 'deg) translate(' + left + 'px, ' + top + 'px);' +
+            '-webkit-transform:rotate(' + angel + 'deg) translate(' + left + 'px, ' + top + 'px);" ostyle="">' +
+            '<div class="leaf_main"><div class="leaf_back" onclick="leaveOnClick(this)">' +
             '<div class="shape_back shape_text"></div>' +
             '<div class="shape_heart shape_text color0' + color + '"></div></div>' +
-            '<div class="leaf_info"><div class="leaf_text">' + text +
+            '<div class="leaf_info" onclick="leaveOnClick(this)"><div class="leaf_text">' + text +
             '</div><div class="leaf_name">' + name +
-            '</div></div><div class="button_like"></div></div></div>')
+            '</div></div><div class="button_like" onclick="likeOnClick(this)"></div></div></div>')
         .click(function () {
             leaveOnClick(this);
         })
@@ -161,33 +150,11 @@ function resumeLeafStyle(id) {
     while ((top - 100) / 500 * $(window).width() > $("#tree_body").height()) {
         addTree();
     }
-    style = "transform: scale(0.2) rotate(" + angel + "deg) translate(" + left + "vw, " + top + "vw);-webkit-transform: scale(0.2) rotate(" + angel + "deg) translate(" + left + "vw, " + top + "vw);";
+    top = top / 100 * $(window).width();
+    left = left / 100 * $(window).width();
+    style = "transform: scale(0.2) rotate(" + angel + "deg) translate(" + left + "px, " + top + "px);-webkit-transform: scale(0.2) rotate(" + angel + "deg) translate(" + left + "px, " + top + "px);";
     $("#le_" + id).attr("style", style);
     $("#le_" + id).children().css("opacity", ".7");
-}
-
-function getLeafStyle(id, ab) {
-    'use strict';
-    var style, left, top, angel;
-    top = id * 25;
-    if (id % 4 === 0) {
-        angel = 5;
-        left = -50 + Math.tan(angel / 180 * Math.PI) * top;
-    } else if (id % 4 === 1) {
-        angel = -5;
-        left = 50 + Math.tan(angel / 180 * Math.PI) * top;
-    } else if (id % 4 === 2) {
-        angel = 10;
-        left = -140 + Math.tan(angel / 180 * Math.PI) * top;
-    } else if (id % 4 === 3) {
-        angel = -10;
-        left = 140 + Math.tan(angel / 180 * Math.PI) * top;
-    }
-    if (ab === 1) {
-        top = id * 50;
-        style = "left:0;margin-top:20vw;transform: scale(0.2) rotate(" + angel + "deg) translate(" + left + "vw, " + top + "vw);-webkit-transform: scale(0.2) rotate(" + angel + "deg) translate(" + left + "vw, " + top + "vw);";
-    }
-    return style;
 }
 
 function textChange() {
@@ -199,7 +166,7 @@ function textChange() {
         $("#charcount01").html(70 - str.length);
         if (str.length <= 70) {
             $("#charcount01").css("color", "#888");
-            $("#send_text").css("box-shadow", "0 0 3vw rgba(100, 100, 100, 1) inset");
+            $("#send_text").css("box-shadow", "0 0 30px rgba(100, 100, 100, 1) inset");
         } else {
             $("#charcount01").css("color", "#F88");
         }
@@ -219,7 +186,7 @@ function nameChange() {
         $("#charcount02").html(8 - str.length);
         if (str.length <= 8) {
             $("#charcount02").css("color", "#888");
-            $("#send_name").css("box-shadow", "0 0 3vw rgba(100, 100, 100, 1) inset");
+            $("#send_name").css("box-shadow", "0 0 30px rgba(100, 100, 100, 1) inset");
         } else {
             $("#charcount02").css("color", "#F88");
         }
@@ -279,6 +246,19 @@ function setNotification(message, t, c) {
     ele = document.getElementById("notification");
     newele = ele.cloneNode(true);
     ele.parentNode.replaceChild(newele, ele);
+}
+
+function likeOnClick(node) {
+    'use strict';
+    var id;
+    document.title = "";
+    id = $(node).parent().parent().attr("uid");
+    if (id !== -1) {
+        serverPostLike(id);
+        $(node).css("animation", "buttonexpand .6s")
+            .css("-webkit-animation", "buttonexpand .6s")
+            .fadeOut();
+    }
 }
 
 function newComer(i) {

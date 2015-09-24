@@ -15,7 +15,7 @@ Thanks to the individuals and groups who provided their helps!
 <head itemscope="" itemtype="http://schema.org/WebSite">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <meta name="viewport" content="target-densitydpi=device-dpi, width=980, user-scalable=no">
     <title itemprop="name">爱♡情♡树</title>
     <meta name="Author" content="Apollo Wayne & ZYY">
     <meta property="og:title" content="爱♡情♡树" />
@@ -105,16 +105,17 @@ Thanks to the individuals and groups who provided their helps!
         #back {
             position: absolute;
             width: 100%;
+            min-width: 950px;
             height: 100%;
-            top: 0;
-            left: 0;
+            top: 0px;
+            left: 0px;
             background: rgba(180, 230, 250, 1);
             background: linear-gradient(to bottom, rgba(180, 230, 250, 1), rgba(130, 200, 250, 1));
             background: -webkit-linear-gradient(top, rgba(180, 230, 250, 1), rgba(130, 200, 250, 1));
         }
         
         #area {
-            width: 80%;
+            width: 800px;
             margin: 0 auto;
         }
         
@@ -126,24 +127,24 @@ Thanks to the individuals and groups who provided their helps!
         
         #sun {
             position: absolute;
-            left: 0;
-            top: 10%;
-            width: 20vw;
-            height: 20vw;
+            left: 50px;
+            top: 100px;
+            width: 160px;
+            height: 160px;
             border-radius: 50%;
             opacity: .8;
             background: rgba(240, 200, 100, 1);
             background: radial-gradient(rgba(240, 200, 100, 1), rgba(240, 240, 140, 1));
-            box-shadow: 0 0 10vw rgba(240, 200, 100, 1);
+            box-shadow: 0px 0px 50px rgba(240, 200, 100, 1);
             display: none;
         }
         
         #moon {
             position: absolute;
-            left: 0;
-            top: 10%;
-            width: 20vw;
-            height: 20vw;
+            left: 650px;
+            top: 100px;
+            width: 160px;
+            height: 160px;
             mask: linear-gradient(to bottom right, rgba(1, 1, 1, .3), rgba(1, 1, 1, 1));
             -webkit-mask: -webkit-linear-gradient(top left, rgba(1, 1, 1, .3), rgba(1, 1, 1, 1));
             border-radius: 50%;
@@ -153,17 +154,16 @@ Thanks to the individuals and groups who provided their helps!
         #moon:after {
             content: "";
             position: absolute;
-            width: 15vw;
-            height: 15vw;
+            width: 80%;
+            height: 80%;
             border-radius: 50%;
-            border-right: rgba(240, 240, 250, 1) solid 6vw;
-            border-bottom: rgba(240, 240, 250, 1) solid 6vw;
+            border-right: rgba(240, 240, 250, 1) solid 30px;
+            border-bottom: rgba(240, 240, 250, 1) solid 30px;
         }
         
         #test {
             position: fixed;
             opacity: 0;
-            bottom: -160px;
         }
         
         #test:after {
@@ -172,7 +172,7 @@ Thanks to the individuals and groups who provided their helps!
         }
         
         #tree {
-            width: 100%;
+            width: 800px;
             margin: 0 auto;
         }
         
@@ -183,9 +183,8 @@ Thanks to the individuals and groups who provided their helps!
         }
         
         .tree_part {
-            width: 98%;
-            height: 25vw;
-            margin: 0 auto;
+            width: 100%;
+            height: 200px;
             position: relative;
             animation: treegrow .6s;
             -webkit-animation: treegrow .6s;
@@ -193,10 +192,10 @@ Thanks to the individuals and groups who provided their helps!
         
         .tree_part01 {
             position: absolute;
-            width: 70%;
+            width: 65%;
             height: 100%;
             left: 0;
-            border-radius: 0 0 0 8vw;
+            border-radius: 0 0 0 50px;
             background: rgba(120, 220, 120, 1);
             background: linear-gradient(to bottom, rgba(120, 220, 120, 1), rgba(100, 200, 100, 1));
             background: -webkit-linear-gradient(top, rgba(120, 220, 120, 1), rgba(100, 200, 100, 1));
@@ -206,21 +205,21 @@ Thanks to the individuals and groups who provided their helps!
         
         .tree_part01shadow {
             position: absolute;
-            width: 70%;
+            width: 65%;
             height: 100%;
             left: 0;
-            border-radius: 0 0 0 8vw;
+            border-radius: 0 0 0 50px;
             transform: skewX(-40deg);
             -webkit-transform: skewX(-40deg);
-            box-shadow: 0 1vw 1vw rgba(100, 100, 100, .3);
+            box-shadow: 0px 10px 5px rgba(100, 100, 100, .3);
         }
         
         .tree_part02 {
             position: absolute;
-            width: 70%;
+            width: 65%;
             height: 100%;
             right: 0;
-            border-radius: 0 0 8vw 0;
+            border-radius: 0 0 50px 0;
             background: rgba(120, 220, 120, 1);
             background: linear-gradient(to bottom, rgba(120, 220, 120, 1), rgba(100, 200, 100, 1));
             background: -webkit-linear-gradient(top, rgba(120, 220, 120, 1), rgba(100, 200, 100, 1));
@@ -230,24 +229,24 @@ Thanks to the individuals and groups who provided their helps!
         
         .tree_part02shadow {
             position: absolute;
-            width: 70%;
+            width: 65%;
             height: 100%;
             right: 0;
-            border-radius: 0 0 8vw 0;
+            border-radius: 0 0 50px 0;
             transform: skewX(40deg);
             -webkit-transform: skewX(40deg);
-            box-shadow: 0 1vw 1vw rgba(100, 100, 100, .3);
+            box-shadow: 0px 10px 5px rgba(100, 100, 100, .3);
         }
         
         #tree_head {
             width: 100%;
-            height: 50vw;
+            height: 600px;
             position: relative;
         }
         
         #tree_head01 {
             width: 60%;
-            height: 52vw;
+            height: 620px;
             left: -10%;
             position: absolute;
             overflow: hidden;
@@ -255,10 +254,10 @@ Thanks to the individuals and groups who provided their helps!
         
         #tree_head02 {
             position: absolute;
-            width: 110%;
-            height: 50vw;
-            left: 43%;
-            border-radius: 8vw 0 0 8vw;
+            width: 100%;
+            height: 600px;
+            left: 53%;
+            border-radius: 200px 0 0 50px;
             background: rgba(120, 220, 120, 1);
             background: linear-gradient(to bottom, rgba(120, 220, 120, 1), rgba(100, 200, 100, 1));
             background: -webkit-linear-gradient(top, rgba(120, 220, 120, 1), rgba(100, 200, 100, 1));
@@ -268,18 +267,18 @@ Thanks to the individuals and groups who provided their helps!
         
         .tree_head02shadow {
             position: absolute;
-            width: 110%;
-            height: 50vw;
-            left: 43%;
-            border-radius: 8vw 0 0 8vw;
+            width: 100%;
+            height: 600px;
+            left: 53%;
+            border-radius: 200px 0 0 50px;
             transform: skewX(-40deg);
             -webkit-transform: skewX(-40deg);
-            box-shadow: 0 1vw 1vw rgba(100, 100, 100, .3);
+            box-shadow: 0px 10px 5px rgba(100, 100, 100, .3);
         }
         
         #tree_head03 {
             width: 60%;
-            height: 52vw;
+            height: 620px;
             right: -10%;
             position: absolute;
             overflow: hidden;
@@ -287,10 +286,10 @@ Thanks to the individuals and groups who provided their helps!
         
         #tree_head04 {
             position: absolute;
-            width: 110%;
-            height: 50vw;
-            right: 43%;
-            border-radius: 0 8vw 8vw 0;
+            width: 100%;
+            height: 600px;
+            right: 53%;
+            border-radius: 0 200px 50px 0;
             background: rgba(120, 220, 120, 1);
             background: linear-gradient(to bottom, rgba(120, 220, 120, 1), rgba(100, 200, 100, 1));
             background: -webkit-linear-gradient(top, rgba(120, 220, 120, 1), rgba(100, 200, 100, 1));
@@ -300,22 +299,23 @@ Thanks to the individuals and groups who provided their helps!
         
         .tree_head04shadow {
             position: absolute;
-            width: 110%;
-            height: 50vw;
-            right: 43%;
-            border-radius: 0 8vw 8vw 0;
+            width: 100%;
+            height: 600px;
+            right: 53%;
+            border-radius: 0 200px 50px 0;
             transform: skewX(40deg);
             -webkit-transform: skewX(40deg);
-            box-shadow: 0 1vw 1vw rgba(100, 100, 100, .3);
+            box-shadow: 0px 10px 5px rgba(100, 100, 100, .3);
         }
         
         #tree_star {
             position: relative;
-            width: 30vw;
-            height: 30vw;
+            width: 160px;
+            height: 160px;
             margin: 0 auto;
-            margin-bottom: -20vw;
+            margin-bottom: -160px;
             z-index: 10;
+            padding-left: 10px;
             opacity: 0;
             transition: opacity .6s;
             -webkit-transition: opacity .6s;
@@ -328,11 +328,8 @@ Thanks to the individuals and groups who provided their helps!
         
         #tree_star:after {
             position: absolute;
-            width: 30vw;
-            text-align: center;
-            left: 0;
             content: "\f005";
-            font: normal normal normal 30vw/1 FontAwesome;
+            font: normal normal normal 160px/1 FontAwesome;
             color: gold;
             mask: linear-gradient(to bottom, rgba(1, 1, 1, .5), rgba(1, 1, 1, 1));
             -webkit-mask: -webkit-linear-gradient(top, rgba(1, 1, 1, .5), rgba(1, 1, 1, 1));
@@ -340,17 +337,14 @@ Thanks to the individuals and groups who provided their helps!
         
         #tree_star:before {
             position: absolute;
-            width: 30vw;
-            text-align: center;
-            left: 0;
             content: "\f005";
-            font: normal normal normal 30vw/1 FontAwesome;
+            font: normal normal normal 160px/1 FontAwesome;
             color: white;
         }
         
         #tree_foot {
             width: 30%;
-            height: 50vw;
+            height: 350px;
             margin: 0 auto;
             z-index: 10;
             position: relative;
@@ -361,7 +355,7 @@ Thanks to the individuals and groups who provided their helps!
             width: 50%;
             height: 100%;
             left: 12%;
-            border-radius: 0 0 0 5vw;
+            border-radius: 0 0 0 20px;
             background: rgba(220, 160, 120, 1);
             background: linear-gradient(to bottom, rgba(220, 160, 120, 1), rgba(200, 140, 100, 1));
             background: -webkit-linear-gradient(top, rgba(220, 160, 120, 1), rgba(200, 140, 100, 1));
@@ -374,7 +368,7 @@ Thanks to the individuals and groups who provided their helps!
             width: 50%;
             height: 100%;
             right: 12%;
-            border-radius: 0 0 5vw 0;
+            border-radius: 0 0 20px 0;
             background: rgba(220, 160, 120, 1);
             background: linear-gradient(to bottom, rgba(220, 160, 120, 1), rgba(200, 140, 100, 1));
             background: -webkit-linear-gradient(top, rgba(220, 160, 120, 1), rgba(200, 140, 100, 1));
@@ -387,10 +381,10 @@ Thanks to the individuals and groups who provided their helps!
             width: 50%;
             height: 100%;
             left: 12%;
-            border-radius: 0 0 0 5vw;
+            border-radius: 0 0 0 20px;
             transform: skewX(-6deg);
             -webkit-transform: skewX(-6deg);
-            box-shadow: -1vw 1vw 1vw rgba(100, 100, 100, .3);
+            box-shadow: -5px 5px 5px rgba(100, 100, 100, .3);
         }
         
         .tree_foot02shadow {
@@ -398,26 +392,27 @@ Thanks to the individuals and groups who provided their helps!
             width: 50%;
             height: 100%;
             right: 12%;
-            border-radius: 0 0 vw 0;
+            border-radius: 0 0 20px 0;
             transform: skewX(6deg);
             -webkit-transform: skewX(6deg);
-            box-shadow: 1vw 1vw 1vw rgba(100, 100, 100, .3);
+            box-shadow: 5px 5px 5px rgba(100, 100, 100, .3);
         }
         
         #boy {
-            width: 40vw;
-            height: 40vw;
-            margin-top: -40vw;
+            width: 300px;
+            height: 300px;
+            margin-top: -300px;
+            margin-left: 68px;
             position: relative;
             overflow: hidden;
             z-index: 11;
         }
         
         #girl {
-            width: 40vw;
-            height: 40vw;
-            margin-top: -40vw;
-            margin-left: 40vw;
+            width: 300px;
+            height: 300px;
+            margin-top: -300px;
+            margin-left: 445px;
             position: relative;
             overflow: hidden;
             z-index: 11;
@@ -426,29 +421,31 @@ Thanks to the individuals and groups who provided their helps!
         #boyimg,
         #girlimg {
             display: none;
-            width: 40vw;
-            height: 40vw;
+            width: 300px;
+            height: 300px;
         }
         
         #grass {
             position: relative;
             width: 100%;
+            min-width: 950px;
             height: 8vh;
             margin-top: -8vh;
-            background: url(images/grass.svg) repeat-x;
+            background: url('images/grass.svg') repeat-x;
             z-index: 20;
         }
         
         #leaves {
             position: absolute;
-            left: 0;
-            top: 0;
+            z-index: 12;
+            left: 0px;
+            top: 0px;
             z-index: 50;
         }
         
         .leaf {
-            width: 80vw;
-            height: 80vw;
+            width: 800px;
+            height: 800px;
             position: absolute;
             margin: 0 auto;
             cursor: pointer;
@@ -495,14 +492,15 @@ Thanks to the individuals and groups who provided their helps!
         
         .leaf_back {
             width: 100%;
-            height: 0;
+            height: 100%;
+            margin-bottom: -100%;
         }
         
         .shape_back:before {
             width: 100%;
             height: 100%;
             content: "\f004";
-            font: normal normal normal 80vw/1 FontAwesome;
+            font: normal normal normal 800px/1 FontAwesome;
             color: white;
         }
         
@@ -516,10 +514,10 @@ Thanks to the individuals and groups who provided their helps!
             width: 100%;
             height: 100%;
             content: "\f004";
-            font: normal normal normal 80vw/1 FontAwesome;
+            font: normal normal normal 800px/1 FontAwesome;
             mask: linear-gradient(to bottom, rgba(1, 1, 1, .5), rgba(1, 1, 1, 1));
             -webkit-mask: -webkit-linear-gradient(top, rgba(1, 1, 1, .5), rgba(1, 1, 1, 1));
-            text-shadow: 0 1vw 1vw rgba(100, 100, 100, .3);
+            text-shadow: 0px 10px 5px rgba(100, 100, 100, .3);
         }
         
         .leaf_info {
@@ -531,9 +529,9 @@ Thanks to the individuals and groups who provided their helps!
         .leaf_text {
             text-align: center;
             width: 100%;
-            height: 27vw;
+            height: 270px;
             overflow: hidden;
-            font: normal normal normal 4.5vw/1.2 Cursive;
+            font: normal normal normal 45px/1.2 Cursive;
             color: rgba(0, 0, 0, .5);
             transform: scale(0);
             -webkit-transform: scale(0);
@@ -548,14 +546,14 @@ Thanks to the individuals and groups who provided their helps!
         
         .leaf_name {
             margin: 5% auto;
-            width: 70%;
-            height: 7.5vw;
+            width: 100%;
+            height: 144px;
             overflow: hidden;
             text-align: center;
-            font: normal normal normal 5vw/1.5 Cursive;
+            font: normal normal normal 48px/1.5 Cursive;
             color: rgba(0, 0, 0, .5);
-            transform: scale(2) translate(0, -10vw);
-            -webkit-transform: scale(2) translate(0, -10vw);
+            transform: scale(2) translate(0px, -80px);
+            -webkit-transform: scale(2) translate(0px, -80px);
             transition: transform .5s;
             -webkit-transition: -webkit-transform .5s;
         }
@@ -567,10 +565,10 @@ Thanks to the individuals and groups who provided their helps!
         
         .button_like {
             position: relative;
-            width: 16vw;
-            height: 16vw;
+            width: 160px;
+            height: 160px;
             margin: 0 auto;
-            margin-top: -20vw;
+            margin-top: -280px;
             border-radius: 50%;
             transform: scale(0);
             mask: linear-gradient(to bottom, rgba(1, 1, 1, 1), rgba(1, 1, 1, .5));
@@ -590,10 +588,10 @@ Thanks to the individuals and groups who provided their helps!
             width: 50%;
             margin-left: 25%;
             height: 100%;
-            font: normal normal normal 10vw/1.6 FontAwesome;
+            font: normal normal normal 100px/1.6 FontAwesome;
             text-align: center;
             color: white;
-            text-shadow: 0 1vw 1vw rgba(100, 100, 100, .3);
+            text-shadow: 0px 10px 5px rgba(100, 100, 100, .3);
         }
         
         .button_like:hover {
@@ -609,23 +607,22 @@ Thanks to the individuals and groups who provided their helps!
         #sendbox {
             position: fixed;
             z-index: 100000;
-            width: 16vw;
-            height: 16vw;
-            right: 3vw;
-            bottom: 4vh;
+            width: 160px;
+            height: 160px;
+            right: 30px;
+            bottom: 60px;
             cursor: pointer;
             display: none;
             overflow: hidden;
             border-radius: 50%;
-            text-align: center;
-            box-shadow: 0 1vw 1vw rgba(100, 100, 100, .3);
+            box-shadow: 0px 5px 5px rgba(100, 100, 100, .3);
             background: rgba(250, 250, 250, 1);
             background: linear-gradient(to bottom, rgba(250, 250, 250, 1), rgba(230, 230, 230, 1));
             background: -webkit-linear-gradient(top, rgba(250, 250, 250, 1), rgba(230, 230, 230, 1));
             animation: flow 0.5s 2s both;
             -webkit-animation: flow 0.5s 2s both;
-            transform: scale(1) translate(0, 0);
-            -webkit-transform: scale(1) translate(0, 0);
+            transform: scale(1) translate(0px, 0px);
+            -webkit-transform: scale(1) translate(0px, 0px);
             transition: transform .6s, opacity .6s;
             -webkit-transition: -webkit-transform .6s, opacity .6s;
         }
@@ -633,7 +630,10 @@ Thanks to the individuals and groups who provided their helps!
         #sendbox:after {
             content: "\f040";
             display: block;
-            font: normal normal normal 10vw/1.6 FontAwesome;
+            width: 100%;
+            height: 100%;
+            font: normal normal normal 100px/1.6 FontAwesome;
+            text-align: center;
             color: gray;
             opacity: 1;
             transform: translateY(0);
@@ -648,15 +648,18 @@ Thanks to the individuals and groups who provided their helps!
             content: "\f110";
             position: relative;
             display: none;
-            font: normal normal normal 10vw/1.6 FontAwesome;
+            width: 100%;
+            height: 100%;
+            font: normal normal normal 100px/1.6 FontAwesome;
+            text-align: center;
             color: white;
             animation: rotate 1s infinite steps(8);
             -webkit-animation: rotate 1s infinite steps(8);
         }
         
         #sendbox.sending:after {
-            transform: translateY(20vw);
-            -webkit-transform: translateY(20vw);
+            transform: translateY(200px);
+            -webkit-transform: translateY(200px);
         }
         
         #sendbox.sending:before {
@@ -667,19 +670,19 @@ Thanks to the individuals and groups who provided their helps!
             background: rgba(255, 255, 255, 1);
             background: linear-gradient(to bottom, rgba(255, 255, 255, 1), rgba(240, 240, 240, 1));
             background: -webkit-linear-gradient(top, rgba(255, 255, 255, 1), rgba(240, 240, 240, 1));
-            box-shadow: 0 2vw 2vw rgba(100, 100, 100, .3);
+            box-shadow: 0px 10px 10px rgba(100, 100, 100, .3);
         }
         
         #sendbox:not(.sending):active {
             background: rgba(240, 240, 240, 1);
             background: linear-gradient(to bottom, rgba(230, 230, 230, 1), rgba(240, 240, 240, 1));
             background: -webkit-linear-gradient(top, rgba(230, 230, 230, 1), rgba(240, 240, 240, 1));
-            box-shadow: 0 1vw 1vw rgba(100, 100, 100, .3);
+            box-shadow: 0px 5px 5px rgba(100, 100, 100, .3);
         }
         
         #sendbox.expandbox {
-            transform: scale(5) translate(-7vw, -5vw);
-            -webkit-transform: scale(5) translate(-7vw, -5vw);
+            transform: scale(5) translate(-70px, -50px);
+            -webkit-transform: scale(5) translate(-70px, -50px);
             opacity: 0;
         }
         
@@ -690,24 +693,24 @@ Thanks to the individuals and groups who provided their helps!
         #sendleaf {
             position: fixed;
             z-index: 100001;
-            width: 16vw;
-            height: 16vw;
-            right: 3vw;
-            bottom: 4vh;
-            transform: scale(0) translate(0, 0);
-            -webkit-transform: scale(0) translate(0, 0);
+            width: 160px;
+            height: 160px;
+            right: 30px;
+            bottom: 60px;
+            transform: scale(0) translate(0px, 0px);
+            -webkit-transform: scale(0) translate(0px, 0px);
             transition: transform .6s;
             -webkit-transition: -webkit-transform .6s;
         }
         
         #sendleaf.expandbox {
-            transform: scale(1) translate(0, 0);
-            -webkit-transform: scale(1) translate(0, 0);
+            transform: scale(1) translate(25px, 0px);
+            -webkit-transform: scale(1) translate(25px, 0px);
         }
         
         #le_send {
-            margin-top: -60vw;
-            margin-left: -71vw;
+            margin-top: -560px;
+            margin-left: -725px;
         }
         
         #sendleaf .leaf_info {
@@ -716,42 +719,40 @@ Thanks to the individuals and groups who provided their helps!
         
         #input_text {
             color: #000;
-            height: 0vw;
-            font: normal normal normal 4.5vw/2 Cursive;
+            margin-top: 10px;
+            height: 0px;
         }
         
         #input_name {
             color: #000;
-            height: 0;
+            height: 0px;
         }
         
         #send_text {
-            position: absolute;
-            width: 56vw;
-            height: 23vw;
-            left: 0;
-            top: 0;
+            width: 580px;
+            height: 250px;
             border: none;
             background: rgba(255, 255, 255, .8);
-            box-shadow: 0 0 3vw rgba(100, 100, 100, 1) inset;
-            border-radius: 5vw;
-            padding: 2vw 4vw;
-            font: normal normal normal 4vw/1.2 Cursive;
+            box-shadow: 0px 0px 30px rgba(100, 100, 100, 1) inset;
+            border-radius: 50px;
+            padding: 10px 30px;
+            margin-top: -10px;
+            font: normal normal normal 40px/1.2 Cursive;
             color: #555;
             border-collapse: collapse;
         }
         
         #send_name {
             margin: 0 auto;
-            width: 40vw;
-            height: 7.5vw;
+            width: 400px;
+            height: 72px;
             border: none;
             background: rgba(255, 255, 255, .8);
-            box-shadow: 0 0 3vw rgba(100, 100, 100, 1) inset;
-            border-radius: 5vw;
-            padding: 0 2vw;
+            box-shadow: 0px 0px 30px rgba(100, 100, 100, 1) inset;
+            border-radius: 50px;
+            padding: 0px 20px;
             text-align: center;
-            font: normal normal normal 5vw/1.5 Cursive;
+            font: normal normal normal 48px/1.5 Cursive;
             color: #555;
             border-collapse: collapse;
         }
@@ -759,9 +760,9 @@ Thanks to the individuals and groups who provided their helps!
         #charcount01,
         #charcount02 {
             position: absolute;
-            font: normal normal normal 4vw/1 Cursive;
-            padding: 1vw;
-            border-radius: 5vw;
+            font: normal normal normal 40px/1 Cursive;
+            padding: 10px;
+            border-radius: 50px;
             background: rgba(250, 250, 250, .6);
             text-align: center;
             color: #888;
@@ -769,46 +770,47 @@ Thanks to the individuals and groups who provided their helps!
         }
         
         #charcount01 {
-            right: 2vw;
-            top: 20vw;
+            right: 20px;
+            top: 200px;
         }
         
         #charcount02 {
-            right: 11vw;
-            top: 31vw;
+            right: 110px;
+            top: 308px;
         }
         
         #sendbuttons {
             position: fixed;
             z-index: 100002;
-            width: 16vw;
-            height: 16vw;
-            right: 3vw;
-            bottom: 4vh;
-            transform: scale(0) translate(0, 0);
-            -webkit-transform: scale(0) translate(0, 0);
+            width: 160px;
+            height: 160px;
+            right: 30px;
+            bottom: 60px;
+            transform: scale(0) translate(0px, 0px);
+            -webkit-transform: scale(0) translate(0px, 0px);
             transition: transform .6s;
             -webkit-transition: -webkit-transform .6s;
         }
         
         #sendbuttons.expandbox {
-            transform: scale(1) translate(0, 0);
-            -webkit-transform: scale(1) translate(0, 0);
+            transform: scale(1) translate(25px, 0px);
+            -webkit-transform: scale(1) translate(25px, 0px);
         }
         
         #sendbuttons .button {
             position: absolute;
-            width: 16vw;
-            height: 16vw;
+            width: 160px;
+            height: 160px;
+            top: 30px;
             border-radius: 50%;
             cursor: pointer;
         }
         
         #button_cancel {
             z-index: 100002;
-            width: 16vw;
-            right: 72vw;
-            box-shadow: 0 1vw 1vw rgba(100, 100, 100, .3);
+            width: 160px;
+            right: 720px;
+            box-shadow: 0px 5px 5px rgba(100, 100, 100, .3);
             background: rgba(250, 150, 150, 1);
             background: linear-gradient(to bottom, rgba(250, 150, 150, 1), rgba(230, 130, 130, 1));
             background: -webkit-linear-gradient(top, rgba(250, 150, 150, 1), rgba(230, 130, 130, 1));
@@ -819,7 +821,7 @@ Thanks to the individuals and groups who provided their helps!
             display: block;
             width: 100%;
             height: 100%;
-            font: normal normal normal 10vw/1.6 FontAwesome;
+            font: normal normal normal 100px/1.6 FontAwesome;
             text-align: center;
             color: white;
             mask: linear-gradient(top, rgba(1, 1, 1, .5), rgba(1, 1, 1, 1));
@@ -830,21 +832,21 @@ Thanks to the individuals and groups who provided their helps!
             background: rgba(255, 170, 170, 1);
             background: linear-gradient(to bottom, rgba(255, 170, 170, 1), rgba(250, 150, 150, 1));
             background: -webkit-linear-gradient(top, rgba(255, 170, 170, 1), rgba(250, 150, 150, 1));
-            box-shadow: 0 2vw 2vw rgba(100, 100, 100, .3);
+            box-shadow: 0px 10px 10px rgba(100, 100, 100, .3);
         }
         
         #button_cancel:active {
             background: rgba(230, 130, 130, 1);
             background: linear-gradient(to bottom, rgba(230, 130, 130, 1), rgba(250, 150, 150, 1));
             background: -webkit-linear-gradient(top, rgba(230, 130, 130, 1), rgba(250, 150, 150, 1));
-            box-shadow: 0 1vw 1vw rgba(100, 100, 100, .3);
+            box-shadow: 0px 5px 5px rgba(100, 100, 100, .3);
         }
         
         #button_submit {
             z-index: 100003;
-            width: 16vw;
-            right: 6vw;
-            box-shadow: 0 1vw 1vw rgba(100, 100, 100, .3);
+            width: 160px;
+            right: 90px;
+            box-shadow: 0px 5px 5px rgba(100, 100, 100, .3);
             background: rgba(150, 250, 150, 1);
             background: linear-gradient(to bottom, rgba(150, 250, 150, 1), rgba(130, 230, 130, 1));
             background: -webkit-linear-gradient(top, rgba(150, 250, 150, 1), rgba(130, 230, 130, 1));
@@ -856,7 +858,7 @@ Thanks to the individuals and groups who provided their helps!
             width: 80%;
             margin-left: 6%;
             height: 100%;
-            font: normal normal normal 10vw/1.6 FontAwesome;
+            font: normal normal normal 100px/1.6 FontAwesome;
             text-align: center;
             color: white;
             mask: -webkit-linear-gradient(top, rgba(1, 1, 1, .5), rgba(1, 1, 1, 1));
@@ -867,21 +869,21 @@ Thanks to the individuals and groups who provided their helps!
             background: rgba(170, 255, 170, 1);
             background: linear-gradient(to bottom, rgba(170, 255, 170, 1), rgba(150, 250, 150, 1));
             background: -webkit-linear-gradient(top, rgba(170, 255, 170, 1), rgba(150, 250, 150, 1));
-            box-shadow: 0 2vw 2vw rgba(100, 100, 100, .3);
+            box-shadow: 0px 10px 10px rgba(100, 100, 100, .3);
         }
         
         #button_submit:active {
             background: rgba(130, 220, 130, 1);
             background: linear-gradient(to bottom, rgba(130, 220, 130, 1), rgba(150, 250, 150, 1));
             background: -webkit-linear-gradient(top, rgba(130, 220, 130, 1), rgba(150, 250, 150, 1));
-            box-shadow: 0 1vw 1vw rgba(100, 100, 100, .3);
+            box-shadow: 0px 5px 5px rgba(100, 100, 100, .3);
         }
         
         #notification {
             position: fixed;
             z-index: 100005;
             width: 100%;
-            top: -20vw;
+            top: -200px;
             text-align: center;
             display: none;
             transform: translateY(0);
@@ -891,8 +893,8 @@ Thanks to the individuals and groups who provided their helps!
         }
         
         #notiarea {
-            border-radius: 6vw;
-            box-shadow: 0 1vw 1vw rgba(100, 100, 100, .3);
+            border-radius: 60px;
+            box-shadow: 0px 5px 5px rgba(100, 100, 100, .3);
             opacity: .9;
             overflow: hidden;
             display: inline-block;
@@ -917,8 +919,8 @@ Thanks to the individuals and groups who provided their helps!
         }
         
         #notiimage {
-            width: 6vw;
-            margin: 1vw;
+            width: 5vh;
+            margin: 10px;
             display: inline-block;
             border-radius: 50%;
             background: rgba(250, 250, 250, .5);
@@ -928,7 +930,7 @@ Thanks to the individuals and groups who provided their helps!
         
         #notiimage:after {
             display: block;
-            font: normal normal normal 5vw/1.2 FontAwesome;
+            font: normal normal normal 4vh/1.2 FontAwesome;
             text-align: center;
             color: rgba(100, 100, 100, 1);
             mask: linear-gradient(to bottom, rgba(1, 1, 1, .5), rgba(1, 1, 1, 1));
@@ -936,9 +938,9 @@ Thanks to the individuals and groups who provided their helps!
         }
         
         #notimessage {
-            margin: 1vw 2vw 1vw 0;
+            margin: 10px 20px 10px 0px;
             display: inline-block;
-            font: normal normal bold 5vw/1.2 Tahoma, Geneva, sans-serif;
+            font: normal normal bold 4vh/1.2 Tahoma, Geneva, sans-serif;
             text-align: center;
             color: rgba(100, 100, 100, 1);
         }
@@ -992,10 +994,10 @@ Thanks to the individuals and groups who provided their helps!
         
         @keyframes flow {
             from {
-                bottom: -20vw;
+                bottom: -200px;
             }
             to {
-                bottom: 5vw;
+                bottom: 50px;
             }
         }
         
@@ -1005,18 +1007,18 @@ Thanks to the individuals and groups who provided their helps!
                 opacity: 0;
             }
             20% {
-                transform: translateY(25vw);
+                transform: translateY(250px);
                 opacity: 1;
             }
             80% {
-                transform: translateY(25vw);
+                transform: translateY(250px);
                 opacity: 1;
             }
             100% {
                 transform: translateY(0);
                 opacity: 0;
             }
-        }  
+        }
         
         @keyframes treegrow {
             0% {
@@ -1035,15 +1037,6 @@ Thanks to the individuals and groups who provided their helps!
             }
             to {
                 -webkit-transform: rotate(360deg);
-            }
-        }
-        
-        @keyframes buttonexpand {
-            from {
-                transform: scale(1);
-            }
-            to   {
-                transform: scale(2);
             }
         }
         
@@ -1076,10 +1069,10 @@ Thanks to the individuals and groups who provided their helps!
         
         @-webkit-keyframes flow {
             from {
-                bottom: -20vw;
+                bottom: -200px;
             }
             to {
-                bottom: 5vw;
+                bottom: 50px;
             }
         }
         
@@ -1089,11 +1082,11 @@ Thanks to the individuals and groups who provided their helps!
                 opacity: 0;
             }
             20% {
-                -webkit-transform: translateY(25vw);
+                -webkit-transform: translateY(250px);
                 opacity: 1;
             }
             80% {
-                -webkit-transform: translateY(25vw);
+                -webkit-transform: translateY(250px);
                 opacity: 1;
             }
             100% {
@@ -1119,15 +1112,6 @@ Thanks to the individuals and groups who provided their helps!
             }
             to {
                 -webkit-transform: rotate(360deg);
-            }
-        }
-        
-        @-webkit-keyframes buttonexpand {
-            from {
-                transform: scale(1);
-            }
-            to   {
-                transform: scale(2);
             }
         }
     </style>
@@ -1185,9 +1169,9 @@ Thanks to the individuals and groups who provided their helps!
                     <div class="tree_foot01"></div>
                     <div class="tree_foot02"></div>
                 </div>
-                <div id="boy"><img id="boyimg" src="images/boy_512.png" srcset="images/boy_256.png 1x, images/boy_512.png 2x, images/boy.svg 3x" sizes="256px 256px" alt="boy" />
+                <div id="boy"><img id="boyimg" src="images/boy_512.png" srcset="images/boy_256.png 1x, images/boy_512.png 2x, images/boy.svg 3x" alt="boy" />
                 </div>
-                <div id="girl"><img id="girlimg" src="images/girl_512.png" srcset="images/girl_256.png 1x,images/girl_512.png 2x, images/girl.svg 3x" sizes="256px 256px" alt="girl" />
+                <div id="girl"><img id="girlimg" src="images/girl_512.png" srcset="images/girl_256.png 1x,images/girl_512.png 2x, images/girl.svg 3x" alt="girl" />
                 </div>
             </div>
             <div id="leaves">
@@ -1198,7 +1182,7 @@ Thanks to the individuals and groups who provided their helps!
     <div id="grass"></div>
     <div id="sendbox"></div>
     <div id="sendleaf" color="01">
-        <div class="leaf fullshow" id="le_send" style="" ostyle="">
+        <div class="leaf fullshow send" id="le_send" style="" ostyle="">
             <div class="leaf_main">
                 <div class="leaf_back">
                     <div class="shape_back shape_text"></div>
@@ -1258,7 +1242,6 @@ Thanks to the individuals and groups who provided their helps!
             });
 
         });
-
     </script>
 </body>
 
