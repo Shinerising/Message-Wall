@@ -133,25 +133,23 @@ function createLeafFrom(id, text, name, left, top, angel, color) {
 function resumeLeafStyle(id) {
     'use strict';
     var style, left, top, angel;
-    top = id * 25;
+    top = id * 250;
     if (id % 4 === 0) {
         angel = 5;
-        left = -50 + Math.tan(angel / 180 * Math.PI) * top;
+        left = -500 + Math.tan(angel / 180 * Math.PI) * top;
     } else if (id % 4 === 1) {
         angel = -5;
-        left = 50 + Math.tan(angel / 180 * Math.PI) * top;
+        left = 500 + Math.tan(angel / 180 * Math.PI) * top;
     } else if (id % 4 === 2) {
         angel = 10;
-        left = -140 + Math.tan(angel / 180 * Math.PI) * top;
+        left = -1400 + Math.tan(angel / 180 * Math.PI) * top;
     } else if (id % 4 === 3) {
         angel = -10;
-        left = 140 + Math.tan(angel / 180 * Math.PI) * top;
+        left = 1400 + Math.tan(angel / 180 * Math.PI) * top;
     }
-    while ((top - 100) / 500 * $(window).width() > $("#tree_body").height()) {
+    while (top / 5 - 200 > $("#tree_body").height()) {
         addTree();
     }
-    top = top / 100 * $(window).width();
-    left = left / 100 * $(window).width();
     style = "transform: scale(0.2) rotate(" + angel + "deg) translate(" + left + "px, " + top + "px);-webkit-transform: scale(0.2) rotate(" + angel + "deg) translate(" + left + "px, " + top + "px);";
     $("#le_" + id).attr("style", style);
     $("#le_" + id).children().css("opacity", ".7");

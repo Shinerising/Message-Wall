@@ -127,7 +127,9 @@ $(document).ready(function () {
 
     $(window).scroll(function () {
         if ($(this).scrollTop() + $(this).height() > $("body").height() - 42) {
-            serverPostAddLeaves(10);
+            if (!$("#sendbox").hasClass("sending")) {
+                serverPostAddLeaves(10);
+            }
         }
     });
 });
