@@ -62,7 +62,6 @@ $(document).ready(function () {
 
     $(".button_like").click(function () {});
 
-
     $("#button_cancel").click(function () {
         if ($("#sendbox").hasClass("expandbox")) {
             $("#sendbox").removeClass("expandbox");
