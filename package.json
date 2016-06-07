@@ -1,5 +1,5 @@
 {
-  "name": "OpenShift-Sample-App",
+  "name": “Love Wall“,
   "version": "1.0.0",
   "description": "OpenShift Sample Application",
   "keywords": [
@@ -9,8 +9,8 @@
     "openshift"
   ],
   "author": {
-    "name": "OpenShift",
-    "email": "ramr@example.org",
+    "name": “Apollo Wayne“,
+    "email": “apollo.wayne@pku.edu.cn”,
     "url": "http://www.openshift.com/"
   },
   "homepage": "http://www.openshift.com/",
@@ -31,7 +31,6 @@
     "body-parser": "~1.15.0",
     "connect-mongo": "~1.1.0",
     "cookie-parser": "~1.4.1",
-    "multer": "~1.1.0"
   },
   
   "devDependencies": {},

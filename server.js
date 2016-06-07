@@ -23,7 +23,7 @@ var UserSchema = new mongoose.Schema({
     },
     createdAt: {
         type: Date,
-        expires: 3600 * 24
+        expires: 3600 * 24 ＊ 30
     }
 }, {
     collection: 'UserInfo'
@@ -63,7 +63,7 @@ app.use(session({
     saveUninitialized: true,
     cookie: {
         httpOnly: false,
-        maxAge: new Date(Date.now() + 24 * 60 * 60 * 1000)
+        maxAge: new Date(Date.now() + 30 ＊ 24 * 60 * 60 * 1000)
     }
 }));
 
@@ -80,7 +80,9 @@ app.use(function(req, res, next) {
             liked: []
         });
         newUser.save(function(error) {
-            if (error) {} else {
+            if (error) {
+                
+            } else {
                 req.session.userid = newUser._id;
             }
         });
