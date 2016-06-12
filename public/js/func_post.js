@@ -23,28 +23,6 @@
     newComer: Show some welcome words to new user
 */
 
-//Entrance of the program
-function init() {
-    'use strict';
-    $("#tree_star").css("opacity", 1);
-    $("#sendbox").fadeIn();
-    $("#notification").show();
-    var i, color, firstCome;
-    for (i = 0; i < 20; i = i + 1) {
-        color = parseInt(Math.random() * 8, 10) + 1;
-        //Parameters: createLeaf(id, uid, message, name, color[1~8], display delay[ms], is liked[1:true;0:false]);
-        createLeaf(leavesCount, leavesCount, "I don't care who you are,<br>where you're from,<br>don't care what you did,<br>as long as you love me.", "Backstreet Boys", color, i * 100, 0);
-        leavesCount += 1;
-    }
-    //Check if the user is firstly open the page
-    firstCome = false;
-    if (firstCome) {
-        newComer(0);
-    } else {
-        setNotification("欢迎回来！(*´∀｀*)", 0, 0);
-    }
-}
-
 //Post the like clicked event to the server
 //Parameters: serPostLike(uid[unique ID])
 function serverPostLike(uid) {
@@ -58,64 +36,88 @@ function serverPostLike(uid) {
 //Parameters: serverPostAddLeaves(num[number of new request leaves])
 function serverPostAddLeaves(num) {
     'use strict';
-    var i, color;
-    for (i = 0; i < num; i = i + 1) {
-        //Set the largest number of the leaves
-        if (leavesCount > 100) {
-            break;
-        }
-        color = parseInt(Math.random() * 8, 10) + 1;
-        //Parameters: createLeaf(id, uid, message, name, color[1~8], display delay[ms], is liked[1:true;0:false]);
-        createLeaf(leavesCount, leavesCount, "I don't care who you are,<br>where you're from,<br>don't care what you did,<br>as long as you love me.", "Backstreet Boys", color, i * 100, 0);
-        leavesCount += 1;
-    }
+    var i, postData, leaves;
+    postData = {
+        start: leavesCount,
+        count: num
+    };
+    $.post("/getleaves", postData, null, "json")
+        .done(function (data) {
+            if (data.success) {
+                leaves = data.params.memories;
+                for (i = 0; i < leaves.length; i = i + 1) {
+                    //Set the largest number of the leaves
+                    //Parameters: createLeaf(id, uid, message, name, color[1~8], display delay[ms], is liked[1:true;0:false]);
+                    /*jslint nomen: true*/
+                    createLeaf(leavesCount, leaves[i]._id, leaves[i].text, leaves[i].name, leaves[i].color, i * 100, 0);
+                    /*jslint nomen: false*/
+                    leavesCount += 1;
+                }
+            } else {
+                leaves = null;
+            }
+        })
+        .fail(function () {
+            leaves = null;
+        });
 }
 
 //Post the new leaf to server the user create just now
 //Parameters: serverPostLeaf(uid, message, name, color[1~8]);
 function serverPostNewLeaf(text, name, color) {
     'use strict';
-    //Add ajax request for add new leaf
-    /*If succeed
-        $("#le_" + leavesCount).children().css("opacity", "1");
-        $("#sendbox").removeClass("sending");
-        setNotification("心愿收到！(*´∀｀*)", 0, 0);
-        setLeafUID(leavesCount, UID);   //Set the Unique ID returnd from server
-        leavesCount += 1;
-        
-        $("#send_text").val("");
-        $("#send_name").val("");
-        $("#charcount01").html("70");
-        $("#charcount02").html("8");
-        $("#charcount01").css("opacity", "0");
-        $("#charcount02").css("opacity", "0");
-        $("#input_text").css("opacity", "1");
-        $("#input_name").show();
-    */
+    var postData = {
+        text: text,
+        name: name,
+        color: color
+    };
+    $.post("/addnewleaf", postData, null, "json")
+        .done(function (data) {
+            if (data.success) {
+                $("#le_" + leavesCount).children().css("opacity", "1");
+                $("#sendbox").removeClass("sending");
+                setNotification("心愿收到！(*´∀｀*)", 0, 0);
+                setLeafUID(leavesCount, data.params.id);
+                leavesCount += 1;
 
-    /*If fail
-        removeLeaf(leavesCount);
-        $("#sendbox").removeClass("sending");
-        setNotification("发送失败！ヽ(≧Д≦)", 1, 1);
-        $("#sendbox").click();
-    */
+                $("#send_text").val("");
+                $("#send_name").val("");
+                $("#charcount01").html("70");
+                $("#charcount02").html("8");
+                $("#charcount01").css("opacity", "0");
+                $("#charcount02").css("opacity", "0");
+                $("#input_text").css("opacity", "1");
+                $("#input_name").show();
+            } else {
+                removeLeaf(leavesCount);
+                $("#sendbox").removeClass("sending");
+                if (data.message === "BAD WORDS") {
+                    setNotification("文本包含恶劣词汇！", 1, 1);
+                } else {
+                    setNotification("发送失败！ヽ(≧Д≦)", 1, 1);
+                }
+            }
+        })
+        .fail(function () {
+            removeLeaf(leavesCount);
+            $("#sendbox").removeClass("sending");
+            setNotification("网络错误！ヽ(≧Д≦)", 1, 1);
+        });
+}
 
-    //Test behaviour below
-    setTimeout(function () {
-        $("#le_" + leavesCount).children().css("opacity", "1");
-        $("#sendbox").removeClass("sending");
-        setNotification("心愿收到！(*´∀｀*)", 0, 0);
-        setLeafUID(leavesCount, leavesCount);
-        leavesCount += 1;
-
-        $("#send_text").val("");
-        $("#send_name").val("");
-        $("#charcount01").html("70");
-        $("#charcount02").html("8");
-        $("#charcount01").css("opacity", "0");
-        $("#charcount02").css("opacity", "0");
-        $("#input_text").css("opacity", "1");
-        $("#input_name").show();
-    }, 3000);
-
+//Entrance of the program
+function init() {
+    'use strict';
+    $("#tree_star").css("opacity", 1);
+    $("#sendbox").fadeIn();
+    $("#notification").show();
+    var i, color, firstCome;
+    serverPostAddLeaves(10);
+    //Check if the user is firstly open the page
+    firstCome = false;
+    if (firstCome) {
+        newComer(0);
+    } else {
+        setNotification("欢迎回来！(*´∀｀*)", 0, 0);
+    }
 }
