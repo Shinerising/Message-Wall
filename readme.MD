@@ -1,6 +1,7 @@
 # Wish Tree
 A wish tree allows people to post their words about love and wishes.
 Visit Demo: https://bit.do/lovetree
+![Feature Image](feature.jpg)
 
 # Features
 * Lovely Page Design
