@@ -1,7 +1,7 @@
 {
-  "name": "Love Wall",
-  "version": "1.0.0",
-  "description": "OpenShift Sample Application",
+  "name": "Wish Tree",
+  "version": "1.0.1",
+  "description": "A wish tree allows people to post their words about love and wishes.",
   "keywords": [
     "OpenShift",
     "Node.js",
@@ -11,12 +11,12 @@
   "author": {
     "name": "Apollo Wayne",
     "email": "apollo.wayne@pku.edu.cn",
-    "url": "http://www.openshift.com/"
+    "url": "https://shinerising.github.io"
   },
-  "homepage": "http://www.openshift.com/",
+  "homepage": "https://lovewall-shinerising.rhcloud.com",
   "repository": {
     "type": "git",
-    "url": "https://github.com/openshift/origin-server"
+    "url": "https://github.com/Shinerising/Message-Wall"
   },
 
   "engines": {
