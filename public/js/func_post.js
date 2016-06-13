@@ -6,6 +6,7 @@
     removeLeaf,
     newComer
 */
+
 /*Global variables & functions:
     leavesCount: the count of the leaves than have been drawn on the page
         used to set the leaf id and layout
@@ -30,6 +31,16 @@ function serverPostLike(uid) {
     //Add ajax request for like count
     //Try several request if fail
     //No need to handle success
+    var postData;
+    postData = {
+        uid: uid
+    };
+    $.post("/leaf/like", postData, null, "json")
+        .done(function (data) {
+            setNotification("点赞成功！（≧∇≦）", 0, 0);
+        })
+        .fail(function () {
+        });
 }
 
 //Add new leaves when the screen is scrolled to the end
@@ -41,7 +52,7 @@ function serverPostAddLeaves(num) {
         start: leavesCount,
         count: num
     };
-    $.post("/getleaves", postData, null, "json")
+    $.post("/leaf/get", postData, null, "json")
         .done(function (data) {
             if (data.success) {
                 leaves = data.params.memories;
@@ -49,7 +60,7 @@ function serverPostAddLeaves(num) {
                     //Set the largest number of the leaves
                     //Parameters: createLeaf(id, uid, message, name, color[1~8], display delay[ms], is liked[1:true;0:false]);
                     /*jslint nomen: true*/
-                    createLeaf(leavesCount, leaves[i]._id, leaves[i].text, leaves[i].name, leaves[i].color, i * 100, 0);
+                    createLeaf(leavesCount, leaves[i]._id, leaves[i].text, leaves[i].name, leaves[i].color, i * 100, data.params.liked[i]);
                     /*jslint nomen: false*/
                     leavesCount += 1;
                 }
@@ -71,7 +82,7 @@ function serverPostNewLeaf(text, name, color) {
         name: name,
         color: color
     };
-    $.post("/addnewleaf", postData, null, "json")
+    $.post("/leaf/add", postData, null, "json")
         .done(function (data) {
             if (data.success) {
                 $("#le_" + leavesCount).children().css("opacity", "1");
@@ -93,6 +104,8 @@ function serverPostNewLeaf(text, name, color) {
                 $("#sendbox").removeClass("sending");
                 if (data.message === "BAD WORDS") {
                     setNotification("文本包含恶劣词汇！", 1, 1);
+                } else if (data.message === "SEND LIMIT") {
+                    setNotification("请勿频繁发送消息！", 1, 1);
                 } else {
                     setNotification("发送失败！ヽ(≧Д≦)", 1, 1);
                 }
@@ -112,12 +125,16 @@ function init() {
     $("#sendbox").fadeIn();
     $("#notification").show();
     var i, color, firstCome;
-    serverPostAddLeaves(10);
     //Check if the user is firstly open the page
     firstCome = false;
-    if (firstCome) {
-        newComer(0);
-    } else {
-        setNotification("欢迎回来！(*´∀｀*)", 0, 0);
-    }
+    $.post("/ifnew", {}, null, "json")
+        .done(function (data) {
+            firstCome = data.params.ifnew;
+            if (firstCome) {
+                newComer(0);
+            } else {
+                setNotification("欢迎回来！*(^o^)*", 0, 0);
+            }
+        });
+    serverPostAddLeaves(20);
 }

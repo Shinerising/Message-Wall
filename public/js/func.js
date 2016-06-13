@@ -70,7 +70,7 @@ function removeLeaf(id) {
 
 function setLeafUID(id, uid) {
     'use strict';
-    $("#le_" + id).attr("uid", id);
+    $("#le_" + id).attr("uid", uid);
 }
 
 function createLeaf(id, uid, text, name, color, delay, islike) {

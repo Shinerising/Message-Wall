@@ -74,10 +74,10 @@ app.use(session({
 /* Start server */
 app.listen(8080);
 
-/* Check if New Visitor */
-app.use(function(req, res, next) {
+/* Create Session for User Info */
+app.use('/leaf/*', function(req, res, next) {
     if (req.session && req.session.userid) {
-
+        req.body.ifnew = false;
     } else {
         var newUser = new User({
             name: "",
@@ -90,21 +90,41 @@ app.use(function(req, res, next) {
 
             } else {
                 req.session.userid = newUser._id;
+                req.ifnew = true;
             }
         });
     }
     next();
 });
 
+/* Check if New Visitor */
+app.post('/ifnew', function(req, res) {
+    var ifnew;
+    if (req.session && req.session.userid) {
+        ifnew = false;
+    } else {
+        ifnew = true;
+    }
+    var data = {
+        "action": "ifnewuser",
+        "success": true,
+        "message": "",
+        "params": {
+            "ifnew": ifnew
+        }
+    };
+    return res.json(data);
+});
+
 /* Get Messages */
-app.post('/getleaves', function(req, res) {
+app.post('/leaf/get', function(req, res) {
     var start = req.body.start;
     var count = req.body.count;
     Memory.find({}, null, {
-            skip: 0,
-            limit: 10,
+            skip: start,
+            limit: count,
             sort: {
-                rates: 1
+                rates: -1
             }
         },
         function(error, memories) {
@@ -114,31 +134,45 @@ app.post('/getleaves', function(req, res) {
             if (error) {
                 console.log(error);
                 message = error;
+                var data = {
+                    "action": "addnew",
+                    "success": success,
+                    "message": message,
+                    "params": {
+                        "memories": memories,
+                        "liked": liked
+                    }
+                };
+                return res.json(data);
             } else {
                 success = true;
-                memories.forEach(function(value){
-                    if([].includes(value._id)) {
-                        liked.push(1);
-                    } else {
-                        liked.push(0);
-                    }
+                User.findOne({
+                    _id: req.session.userid
+                }, function(error, user) {
+                    memories.forEach(function(value) {
+                        if (user.liked.indexOf(value._id) !== -1) {
+                            liked.push(1);
+                        } else {
+                            liked.push(0);
+                        }
+                    });
+                    var data = {
+                        "action": "addnew",
+                        "success": success,
+                        "message": message,
+                        "params": {
+                            "memories": memories,
+                            "liked": liked
+                        }
+                    };
+                    return res.json(data);
                 });
             }
-            var data = {
-                "action": "addnew",
-                "success": success,
-                "message": message,
-                "params": {
-                    "memories": memories,
-                    "liked": liked
-                }
-            };
-            return res.json(data);
         });
 });
 
 /* Add New Message */
-app.post('/addnewleaf', function(req, res) {
+app.post('/leaf/add', function(req, res) {
     if (filter.isProfane(req.body.text) || filter.isProfane(req.body.name)) {
         var data = {
             "action": "addnew",
@@ -148,15 +182,66 @@ app.post('/addnewleaf', function(req, res) {
         };
         return res.json(data);
     } else {
-        Memory.count({}, function(error, count) {
-            var newMemory = new Memory({
-                text: req.body.text,
-                name: req.body.name,
-                color: req.body.color,
-                likes: 0,
-                rates: count
-            });
-            newMemory.save(function(error) {
+        User.findOne({
+            _id: req.session.userid
+        }, function(error, user) {
+            if (Date.now() - user.lastsend < 3600000) {
+                var data = {
+                    "action": "addnew",
+                    "success": false,
+                    "message": "SEND LIMIT",
+                    "params": {}
+                };
+                return res.json(data);
+            } else {
+                user.lastsend = Date.now();
+                user.save();
+                Memory.count({}, function(error, count) {
+                    var newMemory = new Memory({
+                        text: req.body.text,
+                        name: req.body.name,
+                        color: req.body.color,
+                        likes: 0,
+                        rates: count
+                    });
+                    newMemory.save(function(error) {
+                        var success = false;
+                        var message = "";
+                        if (error) {
+                            console.log(error);
+                            message = error;
+                        } else {
+                            success = true;
+                        }
+                        var data = {
+                            "action": "addnew",
+                            "success": success,
+                            "message": message,
+                            "params": {
+                                "id": newMemory._id
+                            }
+                        };
+                        return res.json(data);
+                    });
+                })
+            }
+        });
+    }
+});
+
+/* Like a Message */
+app.post('/leaf/like', function(req, res) {
+    Memory.count({}, function(error, count) {
+        var uid = req.body.uid;
+        Memory.findOne({
+            _id: uid
+        }, function(error, memory) {
+            console.log(memory);
+            memory.rates += count / 10;
+            memory.save();
+            User.findOne({
+                _id: req.session.userid
+            }, function(error, user) {
                 var success = false;
                 var message = "";
                 if (error) {
@@ -164,22 +249,24 @@ app.post('/addnewleaf', function(req, res) {
                     message = error;
                 } else {
                     success = true;
+                    user.liked.push(uid);
+                    user.save();
                 }
                 var data = {
-                    "action": "addnew",
+                    "action": "leaflike",
                     "success": success,
                     "message": message,
                     "params": {
-                        "id": newMemory._id
+                        "id": uid
                     }
                 };
                 return res.json(data);
             });
-        })
-    }
+        });
+    })
 });
 
-/* Like a Message */
-app.post('/likeleaf', function(req, res) {
+/* Delete All Leaves and User Info */
+app.post('/deleteall', function(req, res) {
 
 });
