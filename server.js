@@ -237,7 +237,7 @@ app.post('/leaf/like', function(req, res) {
             _id: uid
         }, function(error, memory) {
             console.log(memory);
-            memory.rates += count / 10;
+            memory.rates += count / 5;
             memory.save();
             User.findOne({
                 _id: req.session.userid
@@ -267,6 +267,9 @@ app.post('/leaf/like', function(req, res) {
 });
 
 /* Delete All Leaves and User Info */
-app.post('/deleteall', function(req, res) {
-
+app.get('/deleteall', function(req, res) {
+    User.remove({}, function(error, doc) {
+    });
+    Memory.remove({}, function(error, doc) {
+    });
 });
